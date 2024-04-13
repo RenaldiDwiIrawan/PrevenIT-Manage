@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".InventoryActivity">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/card_inventory"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:backgroundTint="@color/base"
+        tools:ignore="MissingConstraints">
+
+        <ImageView
+            android:id="@+id/back_inventory"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_margin="8dp"
+            android:background="@drawable/back"
+            android:layout_marginLeft="10dp"
+            tools:ignore="MissingConstraints" />
+
+
+    </androidx.cardview.widget.CardView>
+
+    <TextView
+        android:id="@+id/txt_inventory"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="INVENTORY"
+        android:textSize="24dp"
+        android:textStyle="bold"
+        app:layout_constraintTop_toBottomOf="@+id/card_inventory"
+        android:layout_marginTop="20dp"
+        tools:ignore="MissingConstraints" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:layout_marginLeft="35dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginRight="20dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txt_inventory">
+
+        <TextView
+            android:id="@+id/user"
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:text="User"
+            tools:ignore="MissingConstraints" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=" : "
+            app:layout_constraintTop_toTopOf="@+id/user"
+            app:layout_constraintLeft_toRightOf="@+id/user"
+            tools:ignore="MissingConstraints" />
+
+        <EditText
+            android:id="@+id/user_db"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="user dari dari db"
+            android:layout_marginLeft="10dp"
+            app:layout_constraintBottom_toBottomOf="@+id/user"
+            app:layout_constraintStart_toEndOf="@+id/user"
+            app:layout_constraintTop_toTopOf="@+id/user" />
+
+        <TextView
+            android:id="@+id/location"
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:text="Location"
+            app:layout_constraintStart_toStartOf="@+id/user"
+            app:layout_constraintTop_toBottomOf="@+id/user"
+            tools:ignore="MissingConstraints" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=" : "
+            app:layout_constraintTop_toTopOf="@+id/location"
+            app:layout_constraintLeft_toRightOf="@+id/location"
+            tools:ignore="MissingConstraints" />
+
+        <EditText
+            android:id="@+id/location_db"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:text="location dari dari db"
+            app:layout_constraintBottom_toBottomOf="@+id/location"
+            app:layout_constraintStart_toEndOf="@+id/location"
+            app:layout_constraintTop_toTopOf="@+id/location" />
+
+        <TextView
+            android:id="@+id/departement"
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:text="Departement"
+            app:layout_constraintStart_toStartOf="@+id/location"
+            app:layout_constraintTop_toBottomOf="@+id/location"
+            tools:ignore="MissingConstraints" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=" : "
+            app:layout_constraintTop_toTopOf="@+id/departement"
+            app:layout_constraintLeft_toRightOf="@+id/departement"
+            tools:ignore="MissingConstraints" />
+
+        <EditText
+            android:id="@+id/departement_db"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:text="departement dari dari db"
+            app:layout_constraintBottom_toBottomOf="@+id/departement"
+            app:layout_constraintStart_toEndOf="@+id/departement"
+            app:layout_constraintTop_toTopOf="@+id/departement" />
+
+        <TextView
+            android:id="@+id/aset"
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:text="Aset"
+            app:layout_constraintStart_toStartOf="@+id/departement"
+            app:layout_constraintTop_toBottomOf="@+id/departement"
+            tools:ignore="MissingConstraints" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=" : "
+            app:layout_constraintTop_toTopOf="@+id/aset"
+            app:layout_constraintLeft_toRightOf="@+id/aset"
+            tools:ignore="MissingConstraints" />
+
+        <EditText
+            android:id="@+id/aset_db"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:text="departement dari dari db"
+            app:layout_constraintBottom_toBottomOf="@+id/aset"
+            app:layout_constraintStart_toEndOf="@+id/aset"
+            app:layout_constraintTop_toTopOf="@+id/aset" />
+
+        <TextView
+            android:id="@+id/company"
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:text="Company"
+            app:layout_constraintStart_toStartOf="@+id/aset"
+            app:layout_constraintTop_toBottomOf="@+id/aset"
+            tools:ignore="MissingConstraints" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=" : "
+            app:layout_constraintTop_toTopOf="@+id/company"
+            app:layout_constraintLeft_toRightOf="@+id/company"
+            tools:ignore="MissingConstraints" />
+
+        <EditText
+            android:id="@+id/company_db"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:text="Company dari dari db"
+            app:layout_constraintBottom_toBottomOf="@+id/company"
+            app:layout_constraintStart_toEndOf="@+id/company"
+            app:layout_constraintTop_toTopOf="@+id/company" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/card_edit_inventory"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="#B31C65B2"
+        app:layout_constraintEnd_toEndOf="@+id/constraintLayout"
+        app:layout_constraintStart_toStartOf="@+id/constraintLayout"
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout">
+
+        <TextView
+            android:layout_width="120dp"
+            android:layout_height="25dp"
+            android:text="EDIT DATA"
+            android:textColor="@color/white"
+            android:textSize="18dp"
+            android:layout_margin="10dp"
+            android:gravity="center"
+            />
+
+    </androidx.cardview.widget.CardView>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

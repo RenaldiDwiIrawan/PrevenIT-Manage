@@ -1,0 +1,293 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".RepairActivity">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/card_repair"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:backgroundTint="@color/base"
+        tools:ignore="MissingConstraints">
+
+
+        <ImageView
+            android:id="@+id/back_repair"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_margin="8dp"
+            android:background="@drawable/back"
+            app:layout_constraintBottom_toBottomOf="@+id/toolbarId"
+            app:layout_constraintStart_toStartOf="@+id/toolbarId"
+            app:layout_constraintTop_toTopOf="@+id/toolbarId"
+            android:layout_marginLeft="10dp"
+            tools:ignore="MissingConstraints" />
+
+
+    </androidx.cardview.widget.CardView>
+
+    <TextView
+        android:id="@+id/txt_repair"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="REPAIR"
+        android:textSize="24dp"
+        android:textStyle="bold"
+        app:layout_constraintTop_toBottomOf="@+id/card_repair"
+        android:layout_marginTop="20dp"
+        tools:ignore="MissingConstraints" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout"
+        android:layout_width="match_parent"
+        android:layout_height="450dp"
+        android:layout_marginLeft="35dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="20dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txt_repair">
+
+        <TextView
+            android:id="@+id/tanggal"
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="50dp"
+            android:layout_marginTop="30dp"
+            android:text="Tanggal"
+            tools:ignore="MissingConstraints" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=" : "
+            app:layout_constraintTop_toTopOf="@+id/tanggal"
+            app:layout_constraintLeft_toRightOf="@+id/tanggal"
+            tools:ignore="MissingConstraints" />
+
+        <TextView
+            android:id="@+id/txt_kalender_repair"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:hint="Ketuk untuk memasukan kalender"
+            android:textSize="14dp"
+            app:layout_constraintTop_toTopOf="@+id/tanggal"
+            app:layout_constraintBottom_toBottomOf="@+id/tanggal"
+            app:layout_constraintStart_toEndOf="@+id/tanggal"/>
+
+        <TextView
+            android:id="@+id/pic"
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
+            android:text="PIC"
+            app:layout_constraintStart_toStartOf="@+id/tanggal"
+            app:layout_constraintTop_toBottomOf="@+id/tanggal"
+            tools:ignore="MissingConstraints" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=" : "
+            app:layout_constraintTop_toTopOf="@+id/pic"
+            app:layout_constraintLeft_toRightOf="@+id/pic"
+            tools:ignore="MissingConstraints" />
+
+        <EditText
+            android:id="@+id/ePIC"
+            android:layout_width="220dp"
+            android:layout_height="wrap_content"
+            android:hint="Masukan Jenis Kerusakan"
+            android:layout_marginLeft="10dp"
+            app:layout_constraintBottom_toBottomOf="@+id/pic"
+            app:layout_constraintStart_toEndOf="@+id/pic"
+            app:layout_constraintTop_toTopOf="@+id/pic" />
+
+
+        <TextView
+            android:id="@+id/Jkerusakan"
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
+            android:text="Jenis Kerusakan"
+            app:layout_constraintEnd_toEndOf="@+id/pic"
+            app:layout_constraintStart_toStartOf="@+id/pic"
+            app:layout_constraintTop_toBottomOf="@+id/pic"
+            tools:ignore="MissingConstraints" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=" : "
+            app:layout_constraintTop_toTopOf="@+id/Jkerusakan"
+            app:layout_constraintLeft_toRightOf="@+id/Jkerusakan"
+            tools:ignore="MissingConstraints" />
+
+        <EditText
+            android:id="@+id/eJenis_kerusakan"
+            android:layout_width="220dp"
+            android:layout_height="wrap_content"
+            android:hint="Masukan Jenis Kerusakan"
+            android:layout_marginLeft="10dp"
+            app:layout_constraintBottom_toBottomOf="@+id/Jkerusakan"
+            app:layout_constraintStart_toEndOf="@+id/Jkerusakan"
+            app:layout_constraintTop_toTopOf="@+id/Jkerusakan" />
+
+        <TextView
+            android:id="@+id/tindakan"
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
+            android:text="Tindakan"
+            app:layout_constraintEnd_toEndOf="@+id/Jkerusakan"
+            app:layout_constraintStart_toStartOf="@+id/Jkerusakan"
+            app:layout_constraintTop_toBottomOf="@+id/Jkerusakan"
+            tools:ignore="MissingConstraints" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=" : "
+            app:layout_constraintTop_toTopOf="@+id/tindakan"
+            app:layout_constraintLeft_toRightOf="@+id/tindakan"
+            tools:ignore="MissingConstraints" />
+
+        <EditText
+            android:id="@+id/eTindakan"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:hint="Masukan Tindakan"
+            android:layout_marginLeft="10dp"
+            app:layout_constraintBottom_toBottomOf="@+id/tindakan"
+            app:layout_constraintStart_toEndOf="@id/tindakan"
+            app:layout_constraintTop_toTopOf="@+id/tindakan" />
+
+        <TextView
+            android:id="@+id/keterangan"
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
+            android:text="Keterangan"
+            app:layout_constraintEnd_toEndOf="@+id/tindakan"
+            app:layout_constraintStart_toStartOf="@+id/tindakan"
+            app:layout_constraintTop_toBottomOf="@+id/tindakan"
+            tools:ignore="MissingConstraints" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=" : "
+            app:layout_constraintTop_toTopOf="@+id/keterangan"
+            app:layout_constraintLeft_toRightOf="@+id/keterangan"
+            tools:ignore="MissingConstraints" />
+
+        <EditText
+            android:id="@+id/eKeterangan"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:hint="Masukan Keterangan"
+            android:layout_marginLeft="10dp"
+            app:layout_constraintBottom_toBottomOf="@+id/keterangan"
+            app:layout_constraintStart_toEndOf="@id/keterangan"
+            app:layout_constraintTop_toTopOf="@+id/keterangan" />
+
+        <TextView
+            android:id="@+id/txt_signature"
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
+            android:text="Signature"
+            app:layout_constraintStart_toStartOf="@+id/keterangan"
+            app:layout_constraintTop_toBottomOf="@+id/keterangan"
+            tools:ignore="MissingConstraints" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=" : "
+            app:layout_constraintBottom_toBottomOf="@+id/txt_signature"
+            app:layout_constraintLeft_toRightOf="@+id/txt_signature"
+            app:layout_constraintTop_toTopOf="@+id/txt_signature"
+            tools:ignore="MissingConstraints" />
+
+        <com.github.gcacace.signaturepad.views.SignaturePad
+            android:id="@+id/signaturePad_repair"
+            android:layout_width="220dp"
+            android:layout_height="120dp"
+            android:layout_marginLeft="15dp"
+            android:background="@color/white"
+            app:layout_constraintStart_toEndOf="@id/txt_signature"
+            app:layout_constraintTop_toTopOf="@+id/txt_signature"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+    <androidx.cardview.widget.CardView
+        android:id="@+id/reset_signature_repair"
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="20dp"
+        android:backgroundTint="@color/base"
+        android:layout_marginLeft="20dp"
+        app:layout_constraintStart_toEndOf="@+id/cardSubmit_repair"
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:backgroundTint="#B31C65B2"
+            android:text="Reset \n Signature"
+            android:textSize="14dp"
+            android:gravity="center"
+            android:layout_margin="3dp"
+            android:textColor="@color/white"
+            app:layout_constraintStart_toEndOf="@+id/card_submit_maintenance"
+            app:layout_constraintTop_toBottomOf="@+id/constraintLayout" />
+
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardSubmit_repair"
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="20dp"
+        android:backgroundTint="@color/base"
+        app:layout_constraintEnd_toEndOf="@+id/constraintLayout"
+        app:layout_constraintStart_toStartOf="@+id/constraintLayout"
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="SUBMIT"
+            android:textColor="@color/white"
+            android:textSize="18dp"
+            android:layout_margin="10dp"
+            android:gravity="center"
+            />
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardDashboard_repair"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:layout_marginTop="20dp"
+        android:backgroundTint="@color/base"
+        app:layout_constraintEnd_toEndOf="@+id/reset_signature_repair"
+        app:layout_constraintStart_toStartOf="@+id/cardSubmit_repair"
+        app:layout_constraintTop_toBottomOf="@+id/cardSubmit_repair">
+
+        <TextView
+            android:layout_width="120dp"
+            android:layout_height="match_parent"
+            android:layout_margin="10dp"
+            android:gravity="center"
+            android:text="DASHBOARD"
+            android:textColor="@color/white"
+            android:textSize="18dp" />
+    </androidx.cardview.widget.CardView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+
