@@ -24,7 +24,7 @@
             android:layout_marginLeft="15dp"/>
 
         <ImageButton
-            android:id="@+id/iconHome"
+            android:id="@+id/iconLogout"
             android:layout_width="50dp"
             android:layout_height="60dp"
             android:background="@drawable/icon_username"
