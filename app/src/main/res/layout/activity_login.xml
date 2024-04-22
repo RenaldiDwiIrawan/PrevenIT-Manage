@@ -76,7 +76,7 @@
                         android:background="@color/white"
                         android:drawableStart="@drawable/icon_username"
                         android:drawableTint="@color/black"
-                        android:drawablePadding="10dp"
+                        android:drawablePadding="5dp"
                         android:hint="Username" />
 
                 </com.google.android.material.textfield.TextInputLayout>
@@ -99,7 +99,7 @@
                         android:layout_height="wrap_content"
                         android:background="@color/white"
                         android:drawableStart="@drawable/icon_password"
-                        android:drawablePadding="10dp"
+                        android:drawablePadding="5dp"
                         android:drawableTint="@color/black"
                         android:hint="Password"
                         android:inputType="textPassword" />

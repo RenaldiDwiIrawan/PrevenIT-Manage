@@ -83,7 +83,7 @@
             android:id="@+id/pic"
             android:layout_width="120dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="40dp"
+            android:layout_marginTop="30dp"
             android:text="PIC"
             app:layout_constraintStart_toStartOf="@+id/tanggal"
             app:layout_constraintTop_toBottomOf="@+id/tanggal"
@@ -97,15 +97,43 @@
             app:layout_constraintLeft_toRightOf="@+id/pic"
             tools:ignore="MissingConstraints" />
 
-        <EditText
-            android:id="@+id/ePIC"
-            android:layout_width="220dp"
+        <Spinner
+            android:id="@+id/spinner_pic_repair"
+            android:layout_width="150dp"
             android:layout_height="wrap_content"
-            android:hint="Masukan Jenis Kerusakan"
             android:layout_marginLeft="10dp"
             app:layout_constraintBottom_toBottomOf="@+id/pic"
             app:layout_constraintStart_toEndOf="@+id/pic"
-            app:layout_constraintTop_toTopOf="@+id/pic" />
+            app:layout_constraintTop_toTopOf="@+id/pic"
+            android:entries="@array/pic"/>
+
+        <TextView
+            android:id="@+id/asset_tag_repair"
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:text="Asset Tag"
+            app:layout_constraintEnd_toEndOf="@+id/pic"
+            app:layout_constraintStart_toStartOf="@+id/pic"
+            app:layout_constraintTop_toBottomOf="@+id/pic"
+            tools:ignore="MissingConstraints" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=" : "
+            app:layout_constraintTop_toTopOf="@+id/asset_tag_repair"
+            app:layout_constraintLeft_toRightOf="@+id/asset_tag_repair"
+            tools:ignore="MissingConstraints" />
+
+        <Spinner
+            android:id="@+id/spinner_asset_tag_repair"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            app:layout_constraintBottom_toBottomOf="@+id/asset_tag_repair"
+            app:layout_constraintStart_toEndOf="@+id/asset_tag_repair"
+            app:layout_constraintTop_toTopOf="@+id/asset_tag_repair" />
 
 
         <TextView
@@ -115,8 +143,8 @@
             android:layout_marginTop="40dp"
             android:text="Jenis Kerusakan"
             app:layout_constraintEnd_toEndOf="@+id/pic"
-            app:layout_constraintStart_toStartOf="@+id/pic"
-            app:layout_constraintTop_toBottomOf="@+id/pic"
+            app:layout_constraintStart_toStartOf="@+id/asset_tag_repair"
+            app:layout_constraintTop_toBottomOf="@+id/asset_tag_repair"
             tools:ignore="MissingConstraints" />
 
         <TextView

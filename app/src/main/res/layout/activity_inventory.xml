@@ -40,7 +40,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout"
         android:layout_width="match_parent"
-        android:layout_height="300dp"
+        android:layout_height="360dp"
         android:layout_marginLeft="35dp"
         android:layout_marginTop="40dp"
         android:layout_marginRight="20dp"
@@ -48,11 +48,39 @@
         app:layout_constraintTop_toBottomOf="@+id/txt_inventory">
 
         <TextView
+            android:id="@+id/asset_tag"
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="50dp"
+            android:layout_marginTop="30dp"
+            android:text="Asset Tag"
+            tools:ignore="MissingConstraints" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=" : "
+            app:layout_constraintTop_toTopOf="@+id/asset_tag"
+            app:layout_constraintLeft_toRightOf="@+id/asset_tag"
+            tools:ignore="MissingConstraints" />
+
+        <Spinner
+            android:id="@+id/spinner_asset_inv"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            app:layout_constraintBottom_toBottomOf="@+id/asset_tag"
+            app:layout_constraintStart_toEndOf="@+id/asset_tag"
+            app:layout_constraintTop_toTopOf="@+id/asset_tag" />
+
+        <TextView
             android:id="@+id/user"
             android:layout_width="120dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="30dp"
             android:text="User"
+            app:layout_constraintStart_toStartOf="@+id/asset_tag"
+            app:layout_constraintTop_toBottomOf="@+id/asset_tag"
             tools:ignore="MissingConstraints" />
 
         <TextView
@@ -152,10 +180,38 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
-            android:text="departement dari dari db"
+            android:text="Asset dari dari db"
             app:layout_constraintBottom_toBottomOf="@+id/aset"
             app:layout_constraintStart_toEndOf="@+id/aset"
             app:layout_constraintTop_toTopOf="@+id/aset" />
+
+        <TextView
+            android:id="@+id/jumlah_inventory"
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:text="Jumlah"
+            app:layout_constraintStart_toStartOf="@+id/aset"
+            app:layout_constraintTop_toBottomOf="@+id/aset"
+            tools:ignore="MissingConstraints" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=" : "
+            app:layout_constraintTop_toTopOf="@+id/jumlah_inventory"
+            app:layout_constraintLeft_toRightOf="@+id/jumlah_inventory"
+            tools:ignore="MissingConstraints" />
+
+        <EditText
+            android:id="@+id/jumlah_db"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:text="Jumlah dari db"
+            app:layout_constraintBottom_toBottomOf="@+id/jumlah_inventory"
+            app:layout_constraintStart_toEndOf="@+id/jumlah_inventory"
+            app:layout_constraintTop_toTopOf="@+id/jumlah_inventory" />
 
         <TextView
             android:id="@+id/company"
@@ -163,8 +219,8 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="30dp"
             android:text="Company"
-            app:layout_constraintStart_toStartOf="@+id/aset"
-            app:layout_constraintTop_toBottomOf="@+id/aset"
+            app:layout_constraintStart_toStartOf="@+id/jumlah_inventory"
+            app:layout_constraintTop_toBottomOf="@+id/jumlah_inventory"
             tools:ignore="MissingConstraints" />
 
         <TextView
