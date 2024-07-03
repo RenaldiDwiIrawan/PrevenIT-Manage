@@ -49,12 +49,12 @@ public class MaintenanceActivity extends AppCompatActivity {
     private ImageView btn_back;
     private TextView tKalender, txtMaintenance;
     private CardView submit, reset_ttd, dashboard;
-    private EditText thermal, software,  tPrinter;
-    private EditText kPrinter;
+    private EditText namaPerangkat, software, kondisi;
+    private EditText deskripsi;
     private Spinner pic, assetTag;
     private int tahun, bulan, tanggal;
     private String waktu, hari;
-    private SignaturePad ttd;
+//    private SignaturePad ttd;
 
 
     @Override
@@ -73,22 +73,22 @@ public class MaintenanceActivity extends AppCompatActivity {
         });
 
         tKalender = findViewById(R.id.txt_kalender_maintenance);
-        ttd = findViewById(R.id.signaturePad);
+//        ttd = findViewById(R.id.signaturePad);
         submit = findViewById(R.id.card_submit_maintenance);
-        reset_ttd = findViewById(R.id.reset_signature);
+//        reset_ttd = findViewById(R.id.reset_signature);
         dashboard = findViewById(R.id.card_dashboard_inventory);
 
         pic = findViewById(R.id.spinner_pic_maintenance);
         assetTag = findViewById(R.id.spinner_asset_tag_maintenance);
 
-        thermal = findViewById(R.id.thermal_edit);
+        namaPerangkat = findViewById(R.id.nPerangkat_edit);
         software = findViewById(R.id.software_edit);
-        kPrinter = findViewById(R.id.printer_edit);
-        tPrinter = findViewById(R.id.testPrint_edit);
+        kondisi = findViewById(R.id.kondisi_edit);
+        deskripsi = findViewById(R.id.dPekerjaan_edit);
         txtMaintenance = findViewById(R.id.txt_maintenance);
 
         Intent intent = getIntent();
-        DataModel dataModel = intent.getParcelableExtra("dataPreventIT");
+        DataModel dataModel = intent.getParcelableExtra("dataPreventITMaintenance");
 
         List<String> assetTagList = new ArrayList<>();
         ArrayAdapter<String> adapter = new ArrayAdapter<>(MaintenanceActivity.this,
@@ -206,12 +206,12 @@ public class MaintenanceActivity extends AppCompatActivity {
             }
         });
 
-        reset_ttd.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                ttd.clear();
-            }
-        });
+//        reset_ttd.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                ttd.clear();
+//            }
+//        });
 
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -228,14 +228,14 @@ public class MaintenanceActivity extends AppCompatActivity {
                 String picStr = pic.getSelectedItem().toString();
                 String assetTagStr = assetTag.getSelectedItem().toString();
 
-                String thermalStr = thermal.getText().toString();
+                String namaPerangkatStr = namaPerangkat.getText().toString();
                 String softwareStr = software.getText().toString();
-                String kPrinterStr = kPrinter.getText().toString();
-                String tPrinterStr = tPrinter.getText().toString();
+                String kondisiStr = kondisi.getText().toString();
+                String deskripsiStr = deskripsi.getText().toString();
                 String txtMaintenanceStr = txtMaintenance.getText().toString();
                 String formattedDay = String.format("%02d", tanggal);
                 String formattedMonth = String.format("%02d", (bulan + 1));
-                String ttdBase64 = convertSignatureToBase64();
+//                String Base64 = convertSignatureToBase64();
 
                 Map<String, Object> dataMaintenanceMap = new HashMap<>();
                 dataMaintenanceMap.put("kalender", formattedDay + "-" + namaBulan + "-" + tahun);
@@ -246,12 +246,12 @@ public class MaintenanceActivity extends AppCompatActivity {
                 dataMaintenanceMap.put("pic", picStr);
                 dataMaintenanceMap.put("asset_tag", assetTagStr);
 
-                dataMaintenanceMap.put("thermal_suhu", thermalStr);
+                dataMaintenanceMap.put("nama_perangkat", namaPerangkatStr);
                 dataMaintenanceMap.put("software", softwareStr);
-                dataMaintenanceMap.put("kebersihan_printer", kPrinterStr);
-                dataMaintenanceMap.put("test_printer", tPrinterStr);
+                dataMaintenanceMap.put("kondisi", kondisiStr);
+                dataMaintenanceMap.put("deskripsi", deskripsiStr);
                 dataMaintenanceMap.put("dataFrom", txtMaintenanceStr);
-                dataMaintenanceMap.put("signature", ttdBase64);
+//                dataMaintenanceMap.put("signature", ttdBase64);
 
 
                 reff.child(newKey).setValue(dataMaintenanceMap).addOnSuccessListener(new OnSuccessListener<Void>() {
@@ -262,11 +262,11 @@ public class MaintenanceActivity extends AppCompatActivity {
                         pic.setSelection(0);
                         assetTag.setSelection(0);
 
-                        thermal.setText("");
+                        namaPerangkat.setText("");
                         software.setText("");
-                        kPrinter.setText("");
-                        tPrinter.setText("");
-                        ttd.clear();
+                        kondisi.setText("");
+                        deskripsi.setText("");
+//                        ttd.clear();
                     }
                 }).addOnFailureListener(new OnFailureListener() {
                     @Override
@@ -304,31 +304,31 @@ public class MaintenanceActivity extends AppCompatActivity {
                     }
                 });
 
-                reset_ttd.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        reset_ttd.setEnabled(false);
-                        Toast.makeText(MaintenanceActivity.this, "Button disabled. silahkan klik Dashboard.", Toast.LENGTH_SHORT).show();
-                    }
-                });
+//                reset_ttd.setOnClickListener(new View.OnClickListener() {
+//                    @Override
+//                    public void onClick(View view) {
+//                        reset_ttd.setEnabled(false);
+//                        Toast.makeText(MaintenanceActivity.this, "Button disabled. silahkan klik Dashboard.", Toast.LENGTH_SHORT).show();
+//                    }
+//                });
 
                 tKalender.setText(dataModel.getKalender());
                 pic.setAdapter(adapterIntentPic);
                 assetTag.setAdapter(adapterIntentAsset_tag);
-                thermal.setText(dataModel.getThermal_suhu());
+                namaPerangkat.setText(dataModel.getNama_perangkat());
                 software.setText(dataModel.getSoftware());
-                kPrinter.setText(dataModel.getKebersihan_printer());
-                tPrinter.setText(dataModel.getTest_printer());
-                setSignatureFromBase64(dataModel.getSignature());
+                kondisi.setText(dataModel.getKondisi());
+                deskripsi.setText(dataModel.getDeskripsi());
+//                setSignatureFromBase64(dataModel.getSignature());
 
                 tKalender.setEnabled(false);
                 pic.setEnabled(false);
                 assetTag.setEnabled(false);
-                thermal.setEnabled(false);
+                namaPerangkat.setEnabled(false);
                 software.setEnabled(false);
-                kPrinter.setEnabled(false);
-                tPrinter.setEnabled(false);
-                ttd.setEnabled(false);
+                kondisi.setEnabled(false);
+                deskripsi.setEnabled(false);
+//                ttd.setEnabled(false);
 
             }
         }
@@ -338,31 +338,31 @@ public class MaintenanceActivity extends AppCompatActivity {
         startActivity(dashboard);
     }
 
-    private String convertSignatureToBase64() {
-        Bitmap signatureBitmap = ttd.getSignatureBitmap();
-
-        if (signatureBitmap != null) {
-            ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
-            signatureBitmap.compress(Bitmap.CompressFormat.PNG, 100, byteArrayOutputStream);
-            byte[] byteArray = byteArrayOutputStream.toByteArray();
-            return Base64.encodeToString(byteArray, Base64.DEFAULT);
-        } else {
-            return null;
-        }
-    }
-    private void setSignatureFromBase64(String base64String) {
-        if (base64String != null && !base64String.isEmpty()) {
-            byte[] decodedBytes = Base64.decode(base64String, Base64.DEFAULT);
-            Bitmap signatureBitmap = BitmapFactory.decodeByteArray(decodedBytes, 0, decodedBytes.length);
-
-            if (signatureBitmap != null) {
-                ttd.setSignatureBitmap(signatureBitmap);
-            } else {
-                Toast.makeText(this, "Gagal memuat tanda tangan.", Toast.LENGTH_SHORT).show();
-            }
-        } else {
-            Toast.makeText(this, "Tidak ada tanda tangan yang tersimpan.", Toast.LENGTH_SHORT).show();
-        }
-    }
+//    private String convertSignatureToBase64() {
+//        Bitmap signatureBitmap = ttd.getSignatureBitmap();
+//
+//        if (signatureBitmap != null) {
+//            ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+//            signatureBitmap.compress(Bitmap.CompressFormat.PNG, 100, byteArrayOutputStream);
+//            byte[] byteArray = byteArrayOutputStream.toByteArray();
+//            return Base64.encodeToString(byteArray, Base64.DEFAULT);
+//        } else {
+//            return null;
+//        }
+//    }
+//    private void setSignatureFromBase64(String base64String) {
+//        if (base64String != null && !base64String.isEmpty()) {
+//            byte[] decodedBytes = Base64.decode(base64String, Base64.DEFAULT);
+//            Bitmap signatureBitmap = BitmapFactory.decodeByteArray(decodedBytes, 0, decodedBytes.length);
+//
+//            if (signatureBitmap != null) {
+//                ttd.setSignatureBitmap(signatureBitmap);
+//            } else {
+//                Toast.makeText(this, "Gagal memuat tanda tangan.", Toast.LENGTH_SHORT).show();
+//            }
+//        } else {
+//            Toast.makeText(this, "Tidak ada tanda tangan yang tersimpan.", Toast.LENGTH_SHORT).show();
+//        }
+//    }
 
 }

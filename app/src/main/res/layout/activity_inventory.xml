@@ -101,33 +101,33 @@
             app:layout_constraintStart_toEndOf="@+id/user"
             app:layout_constraintTop_toTopOf="@+id/user" />
 
-        <TextView
-            android:id="@+id/location"
-            android:layout_width="120dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="30dp"
-            android:text="Location"
-            app:layout_constraintStart_toStartOf="@+id/user"
-            app:layout_constraintTop_toBottomOf="@+id/user"
-            tools:ignore="MissingConstraints" />
+<!--        <TextView-->
+<!--            android:id="@+id/location"-->
+<!--            android:layout_width="120dp"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginTop="30dp"-->
+<!--            android:text="Location"-->
+<!--            app:layout_constraintStart_toStartOf="@+id/user"-->
+<!--            app:layout_constraintTop_toBottomOf="@+id/user"-->
+<!--            tools:ignore="MissingConstraints" />-->
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text=" : "
-            app:layout_constraintTop_toTopOf="@+id/location"
-            app:layout_constraintLeft_toRightOf="@+id/location"
-            tools:ignore="MissingConstraints" />
+<!--        <TextView-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text=" : "-->
+<!--            app:layout_constraintTop_toTopOf="@+id/location"-->
+<!--            app:layout_constraintLeft_toRightOf="@+id/location"-->
+<!--            tools:ignore="MissingConstraints" />-->
 
-        <EditText
-            android:id="@+id/location_db"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:text="location dari dari db"
-            app:layout_constraintBottom_toBottomOf="@+id/location"
-            app:layout_constraintStart_toEndOf="@+id/location"
-            app:layout_constraintTop_toTopOf="@+id/location" />
+<!--        <EditText-->
+<!--            android:id="@+id/location_db"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginLeft="10dp"-->
+<!--            android:text="location dari dari db"-->
+<!--            app:layout_constraintBottom_toBottomOf="@+id/location"-->
+<!--            app:layout_constraintStart_toEndOf="@+id/location"-->
+<!--            app:layout_constraintTop_toTopOf="@+id/location" />-->
 
         <TextView
             android:id="@+id/departement"
@@ -135,8 +135,8 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="30dp"
             android:text="Departement"
-            app:layout_constraintStart_toStartOf="@+id/location"
-            app:layout_constraintTop_toBottomOf="@+id/location"
+            app:layout_constraintStart_toStartOf="@+id/user"
+            app:layout_constraintTop_toBottomOf="@+id/user"
             tools:ignore="MissingConstraints" />
 
         <TextView
@@ -162,7 +162,7 @@
             android:layout_width="120dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="30dp"
-            android:text="Aset"
+            android:text="Nama Aset"
             app:layout_constraintStart_toStartOf="@+id/departement"
             app:layout_constraintTop_toBottomOf="@+id/departement"
             tools:ignore="MissingConstraints" />
@@ -213,33 +213,33 @@
             app:layout_constraintStart_toEndOf="@+id/jumlah_inventory"
             app:layout_constraintTop_toTopOf="@+id/jumlah_inventory" />
 
-        <TextView
-            android:id="@+id/company"
-            android:layout_width="120dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="30dp"
-            android:text="Company"
-            app:layout_constraintStart_toStartOf="@+id/jumlah_inventory"
-            app:layout_constraintTop_toBottomOf="@+id/jumlah_inventory"
-            tools:ignore="MissingConstraints" />
+<!--        <TextView-->
+<!--            android:id="@+id/company"-->
+<!--            android:layout_width="120dp"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginTop="30dp"-->
+<!--            android:text="Company"-->
+<!--            app:layout_constraintStart_toStartOf="@+id/jumlah_inventory"-->
+<!--            app:layout_constraintTop_toBottomOf="@+id/jumlah_inventory"-->
+<!--            tools:ignore="MissingConstraints" />-->
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text=" : "
-            app:layout_constraintTop_toTopOf="@+id/company"
-            app:layout_constraintLeft_toRightOf="@+id/company"
-            tools:ignore="MissingConstraints" />
+<!--        <TextView-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text=" : "-->
+<!--            app:layout_constraintTop_toTopOf="@+id/company"-->
+<!--            app:layout_constraintLeft_toRightOf="@+id/company"-->
+<!--            tools:ignore="MissingConstraints" />-->
 
-        <EditText
-            android:id="@+id/company_db"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:text="Company dari dari db"
-            app:layout_constraintBottom_toBottomOf="@+id/company"
-            app:layout_constraintStart_toEndOf="@+id/company"
-            app:layout_constraintTop_toTopOf="@+id/company" />
+<!--        <EditText-->
+<!--            android:id="@+id/company_db"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginLeft="10dp"-->
+<!--            android:text="Company dari dari db"-->
+<!--            app:layout_constraintBottom_toBottomOf="@+id/company"-->
+<!--            app:layout_constraintStart_toEndOf="@+id/company"-->
+<!--            app:layout_constraintTop_toTopOf="@+id/company" />-->
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

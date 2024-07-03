@@ -18,21 +18,14 @@ public class DataModel implements Parcelable {
     private String tindakan;
     private String waktu;
     private String jumlah;
-    private String thermal_suhu;
+    private String nama_perangkat;
     private String software;
-    private String kebersihan_printer;
-    private String test_printer;
-    private String Signature;
+    private String kondisi;
+    private String deskripsi;
+//    private String Signature;
+
 
     public DataModel() {
-    }
-
-    public String getAsset_tag() {
-        return asset_tag;
-    }
-
-    public void setAsset_tag(String asset_tag) {
-        this.asset_tag = asset_tag;
     }
 
     public String getDataFrom() {
@@ -91,6 +84,14 @@ public class DataModel implements Parcelable {
         this.pic = pic;
     }
 
+    public String getAsset_tag() {
+        return asset_tag;
+    }
+
+    public void setAsset_tag(String asset_tag) {
+        this.asset_tag = asset_tag;
+    }
+
     public String getTindakan() {
         return tindakan;
     }
@@ -103,6 +104,10 @@ public class DataModel implements Parcelable {
         return waktu;
     }
 
+    public void setWaktu(String waktu) {
+        this.waktu = waktu;
+    }
+
     public String getJumlah() {
         return jumlah;
     }
@@ -111,16 +116,12 @@ public class DataModel implements Parcelable {
         this.jumlah = jumlah;
     }
 
-    public void setWaktu(String waktu) {
-        this.waktu = waktu;
+    public String getNama_perangkat() {
+        return nama_perangkat;
     }
 
-    public String getThermal_suhu() {
-        return thermal_suhu;
-    }
-
-    public void setThermal_suhu(String thermal_suhu) {
-        this.thermal_suhu = thermal_suhu;
+    public void setNama_perangkat(String nama_perangkat) {
+        this.nama_perangkat = nama_perangkat;
     }
 
     public String getSoftware() {
@@ -131,28 +132,20 @@ public class DataModel implements Parcelable {
         this.software = software;
     }
 
-    public String getKebersihan_printer() {
-        return kebersihan_printer;
+    public String getKondisi() {
+        return kondisi;
     }
 
-    public void setKebersihan_printer(String kebersihan_printer) {
-        this.kebersihan_printer = kebersihan_printer;
+    public void setKondisi(String kondisi) {
+        this.kondisi = kondisi;
     }
 
-    public String getTest_printer() {
-        return test_printer;
+    public String getDeskripsi() {
+        return deskripsi;
     }
 
-    public void setTest_printer(String test_printer) {
-        this.test_printer = test_printer;
-    }
-
-    public String getSignature() {
-        return Signature;
-    }
-
-    public void setSignature(String signature) {
-        Signature = signature;
+    public void setDeskripsi(String deskripsi) {
+        this.deskripsi = deskripsi;
     }
 
     protected DataModel(Parcel in) {
@@ -167,11 +160,11 @@ public class DataModel implements Parcelable {
         tindakan = in.readString();
         waktu = in.readString();
         jumlah = in.readString();
-        thermal_suhu = in.readString();
+        nama_perangkat = in.readString();
         software = in.readString();
-        kebersihan_printer = in.readString();
-        test_printer = in.readString();
-        Signature = in.readString();
+        kondisi = in.readString();
+        deskripsi = in.readString();
+//        Signature = in.readString();
     }
 
     public static final Creator<DataModel> CREATOR = new Creator<DataModel>() {
@@ -204,10 +197,10 @@ public class DataModel implements Parcelable {
         parcel.writeString(tindakan);
         parcel.writeString(waktu);
         parcel.writeString(jumlah);
-        parcel.writeString(thermal_suhu);
+        parcel.writeString(nama_perangkat);
         parcel.writeString(software);
-        parcel.writeString(kebersihan_printer);
-        parcel.writeString(test_printer);
-        parcel.writeString(Signature);
+        parcel.writeString(kondisi);
+        parcel.writeString(deskripsi);
+//        parcel.writeString(Signature);
     }
 }

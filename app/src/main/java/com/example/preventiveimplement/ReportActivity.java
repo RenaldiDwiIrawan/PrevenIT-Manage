@@ -5,7 +5,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -13,7 +12,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Spinner;
 
@@ -75,11 +73,11 @@ public class ReportActivity extends AppCompatActivity {
                         DataModel item = adapter.getItem(position);
                         if (item.getDataFrom().equals("REPAIR")){
                             Intent intent = new Intent(ReportActivity.this, RepairActivity.class);
-                            intent.putExtra("dataReport", item);
+                            intent.putExtra("dataPrevenIT", item);
                             startActivity(intent);
                         } else if (item.getDataFrom().equals("MAINTENANCE")){
                             Intent intent = new Intent(ReportActivity.this, MaintenanceActivity.class);
-                            intent.putExtra("dataReport", item);
+                            intent.putExtra("dataPreventITMaintenance", item);
                             startActivity(intent);
                         }
                     }

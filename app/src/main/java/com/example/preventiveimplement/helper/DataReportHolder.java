@@ -11,7 +11,7 @@ import com.example.preventiveimplement.models.DataModel;
 
 public class DataReportHolder extends RecyclerView.ViewHolder {
     private final OnItemClickListener listener;
-    private TextView tanggalHolder, sumberHolder, picHolder, tanggalView, hari, waktu;
+    private TextView tanggalHolder, sumberHolder, picHolder, tanggalView, hari, waktu, asset_tag;
 
     public DataReportHolder(@NonNull View itemView, OnItemClickListener listener) {
         super(itemView);
@@ -20,6 +20,7 @@ public class DataReportHolder extends RecyclerView.ViewHolder {
         tanggalHolder = itemView.findViewById(R.id.tanggal_data_report);
         sumberHolder =  itemView.findViewById(R.id.sumber_data);
         picHolder = itemView.findViewById(R.id.pic_report);
+        asset_tag = itemView.findViewById(R.id.asset_tag_itemReport);
         waktu = itemView.findViewById(R.id.waktu_report);
         this.listener = listener;
 
@@ -44,6 +45,7 @@ public class DataReportHolder extends RecyclerView.ViewHolder {
         tanggalHolder.setText(model.getKalender());
         sumberHolder.setText(model.getDataFrom());
         picHolder.setText(model.getPic());
+        asset_tag.setText(model.getAsset_tag());
         waktu.setText(model.getWaktu());
     }
 }

@@ -70,8 +70,8 @@ public class RepairActivity extends AppCompatActivity {
         tKalender = findViewById(R.id.txt_kalender_repair);
         submit = findViewById(R.id.cardSubmit_repair);
         btnDashboard = findViewById(R.id.cardDashboard_repair);
-        reset_ttd = findViewById(R.id.reset_signature_repair);
-        ttd = findViewById(R.id.signaturePad_repair);
+//        reset_ttd = findViewById(R.id.reset_signature_repair);
+//        ttd = findViewById(R.id.signaturePad_repair);
 
         jKerusakan = findViewById(R.id.eJenis_kerusakan);
         tindakan = findViewById(R.id.eTindakan);
@@ -165,12 +165,12 @@ public class RepairActivity extends AppCompatActivity {
             }
         });
 
-        reset_ttd.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                ttd.clear();
-            }
-        });
+//        reset_ttd.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                ttd.clear();
+//            }
+//        });
 
         tKalender.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -252,7 +252,7 @@ public class RepairActivity extends AppCompatActivity {
                         jKerusakan.setText("");
                         tindakan.setText("");
                         keterangan.setText("");
-                        ttd.clear();
+//                        ttd.clear();
 
                     }
                 }).addOnFailureListener(new OnFailureListener() {
@@ -314,7 +314,7 @@ public class RepairActivity extends AppCompatActivity {
                 jKerusakan.setEnabled(false);
                 tindakan.setEnabled(false);
                 keterangan.setEnabled(false);
-                ttd.setEnabled(false);
+//                ttd.setEnabled(false);
             }
         }
     }
