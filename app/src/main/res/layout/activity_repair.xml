@@ -44,7 +44,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout"
         android:layout_width="match_parent"
-        android:layout_height="450dp"
+        android:layout_height="350dp"
         android:layout_marginLeft="35dp"
         android:layout_marginTop="20dp"
         android:layout_marginRight="20dp"
@@ -83,7 +83,7 @@
             android:id="@+id/pic"
             android:layout_width="120dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="40dp"
+            android:layout_marginTop="30dp"
             android:text="PIC"
             app:layout_constraintStart_toStartOf="@+id/tanggal"
             app:layout_constraintTop_toBottomOf="@+id/tanggal"
@@ -97,15 +97,43 @@
             app:layout_constraintLeft_toRightOf="@+id/pic"
             tools:ignore="MissingConstraints" />
 
-        <EditText
-            android:id="@+id/ePIC"
-            android:layout_width="220dp"
+        <Spinner
+            android:id="@+id/spinner_pic_repair"
+            android:layout_width="150dp"
             android:layout_height="wrap_content"
-            android:hint="Masukan Jenis Kerusakan"
             android:layout_marginLeft="10dp"
             app:layout_constraintBottom_toBottomOf="@+id/pic"
             app:layout_constraintStart_toEndOf="@+id/pic"
-            app:layout_constraintTop_toTopOf="@+id/pic" />
+            app:layout_constraintTop_toTopOf="@+id/pic"
+            android:entries="@array/pic"/>
+
+        <TextView
+            android:id="@+id/asset_tag_repair"
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:text="Asset Tag"
+            app:layout_constraintEnd_toEndOf="@+id/pic"
+            app:layout_constraintStart_toStartOf="@+id/pic"
+            app:layout_constraintTop_toBottomOf="@+id/pic"
+            tools:ignore="MissingConstraints" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=" : "
+            app:layout_constraintTop_toTopOf="@+id/asset_tag_repair"
+            app:layout_constraintLeft_toRightOf="@+id/asset_tag_repair"
+            tools:ignore="MissingConstraints" />
+
+        <Spinner
+            android:id="@+id/spinner_asset_tag_repair"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            app:layout_constraintBottom_toBottomOf="@+id/asset_tag_repair"
+            app:layout_constraintStart_toEndOf="@+id/asset_tag_repair"
+            app:layout_constraintTop_toTopOf="@+id/asset_tag_repair" />
 
 
         <TextView
@@ -115,8 +143,8 @@
             android:layout_marginTop="40dp"
             android:text="Jenis Kerusakan"
             app:layout_constraintEnd_toEndOf="@+id/pic"
-            app:layout_constraintStart_toStartOf="@+id/pic"
-            app:layout_constraintTop_toBottomOf="@+id/pic"
+            app:layout_constraintStart_toStartOf="@+id/asset_tag_repair"
+            app:layout_constraintTop_toBottomOf="@+id/asset_tag_repair"
             tools:ignore="MissingConstraints" />
 
         <TextView
@@ -132,6 +160,7 @@
             android:layout_width="220dp"
             android:layout_height="wrap_content"
             android:hint="Masukan Jenis Kerusakan"
+            android:textSize="16dp"
             android:layout_marginLeft="10dp"
             app:layout_constraintBottom_toBottomOf="@+id/Jkerusakan"
             app:layout_constraintStart_toEndOf="@+id/Jkerusakan"
@@ -161,6 +190,7 @@
             android:layout_width="200dp"
             android:layout_height="wrap_content"
             android:hint="Masukan Tindakan"
+            android:textSize="16dp"
             android:layout_marginLeft="10dp"
             app:layout_constraintBottom_toBottomOf="@+id/tindakan"
             app:layout_constraintStart_toEndOf="@id/tindakan"
@@ -190,63 +220,65 @@
             android:layout_width="200dp"
             android:layout_height="wrap_content"
             android:hint="Masukan Keterangan"
+            android:textSize="16dp"
             android:layout_marginLeft="10dp"
             app:layout_constraintBottom_toBottomOf="@+id/keterangan"
             app:layout_constraintStart_toEndOf="@id/keterangan"
             app:layout_constraintTop_toTopOf="@+id/keterangan" />
 
-        <TextView
-            android:id="@+id/txt_signature"
-            android:layout_width="120dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="40dp"
-            android:text="Signature"
-            app:layout_constraintStart_toStartOf="@+id/keterangan"
-            app:layout_constraintTop_toBottomOf="@+id/keterangan"
-            tools:ignore="MissingConstraints" />
+<!--        <TextView-->
+<!--            android:id="@+id/txt_signature"-->
+<!--            android:layout_width="120dp"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginTop="40dp"-->
+<!--            android:text="Signature"-->
+<!--            app:layout_constraintStart_toStartOf="@+id/keterangan"-->
+<!--            app:layout_constraintTop_toBottomOf="@+id/keterangan"-->
+<!--            tools:ignore="MissingConstraints" />-->
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text=" : "
-            app:layout_constraintBottom_toBottomOf="@+id/txt_signature"
-            app:layout_constraintLeft_toRightOf="@+id/txt_signature"
-            app:layout_constraintTop_toTopOf="@+id/txt_signature"
-            tools:ignore="MissingConstraints" />
+<!--        <TextView-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text=" : "-->
+<!--            app:layout_constraintBottom_toBottomOf="@+id/txt_signature"-->
+<!--            app:layout_constraintLeft_toRightOf="@+id/txt_signature"-->
+<!--            app:layout_constraintTop_toTopOf="@+id/txt_signature"-->
+<!--            tools:ignore="MissingConstraints" />-->
 
-        <com.github.gcacace.signaturepad.views.SignaturePad
-            android:id="@+id/signaturePad_repair"
-            android:layout_width="220dp"
-            android:layout_height="120dp"
-            android:layout_marginLeft="15dp"
-            android:background="@color/white"
-            app:layout_constraintStart_toEndOf="@id/txt_signature"
-            app:layout_constraintTop_toTopOf="@+id/txt_signature"/>
+<!--        <com.github.gcacace.signaturepad.views.SignaturePad-->
+<!--            android:id="@+id/signaturePad_repair"-->
+<!--            android:layout_width="220dp"-->
+<!--            android:layout_height="120dp"-->
+<!--            android:layout_marginLeft="15dp"-->
+<!--            android:background="@color/black"-->
+<!--            app:penColor="@color/base"-->
+<!--            app:layout_constraintStart_toEndOf="@id/txt_signature"-->
+<!--            app:layout_constraintTop_toTopOf="@+id/txt_signature"/>-->
 
     </androidx.constraintlayout.widget.ConstraintLayout>
-    <androidx.cardview.widget.CardView
-        android:id="@+id/reset_signature_repair"
-        android:layout_width="100dp"
-        android:layout_height="50dp"
-        android:layout_marginTop="20dp"
-        android:backgroundTint="@color/base"
-        android:layout_marginLeft="20dp"
-        app:layout_constraintStart_toEndOf="@+id/cardSubmit_repair"
-        app:layout_constraintTop_toBottomOf="@+id/constraintLayout">
+<!--    <androidx.cardview.widget.CardView-->
+<!--        android:id="@+id/reset_signature_repair"-->
+<!--        android:layout_width="100dp"-->
+<!--        android:layout_height="50dp"-->
+<!--        android:layout_marginTop="20dp"-->
+<!--        android:backgroundTint="@color/base"-->
+<!--        android:layout_marginLeft="20dp"-->
+<!--        app:layout_constraintStart_toEndOf="@+id/cardSubmit_repair"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/constraintLayout">-->
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:backgroundTint="#B31C65B2"
-            android:text="Reset \n Signature"
-            android:textSize="14dp"
-            android:gravity="center"
-            android:layout_margin="3dp"
-            android:textColor="@color/white"
-            app:layout_constraintStart_toEndOf="@+id/card_submit_maintenance"
-            app:layout_constraintTop_toBottomOf="@+id/constraintLayout" />
+<!--        <TextView-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="match_parent"-->
+<!--            android:backgroundTint="#B31C65B2"-->
+<!--            android:text="Reset \n Signature"-->
+<!--            android:textSize="14dp"-->
+<!--            android:gravity="center"-->
+<!--            android:layout_margin="3dp"-->
+<!--            android:textColor="@color/white"-->
+<!--            app:layout_constraintStart_toEndOf="@+id/card_submit_maintenance"-->
+<!--            app:layout_constraintTop_toBottomOf="@+id/constraintLayout" />-->
 
-    </androidx.cardview.widget.CardView>
+<!--    </androidx.cardview.widget.CardView>-->
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardSubmit_repair"
@@ -254,7 +286,7 @@
         android:layout_height="50dp"
         android:layout_marginTop="20dp"
         android:backgroundTint="@color/base"
-        app:layout_constraintEnd_toEndOf="@+id/constraintLayout"
+        app:layout_constraintEnd_toStartOf="@+id/cardDashboard_repair"
         app:layout_constraintStart_toStartOf="@+id/constraintLayout"
         app:layout_constraintTop_toBottomOf="@+id/constraintLayout">
 
@@ -275,9 +307,9 @@
         android:layout_height="50dp"
         android:layout_marginTop="20dp"
         android:backgroundTint="@color/base"
-        app:layout_constraintEnd_toEndOf="@+id/reset_signature_repair"
-        app:layout_constraintStart_toStartOf="@+id/cardSubmit_repair"
-        app:layout_constraintTop_toBottomOf="@+id/cardSubmit_repair">
+        app:layout_constraintEnd_toEndOf="@+id/constraintLayout"
+        app:layout_constraintStart_toEndOf="@+id/cardSubmit_repair"
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout">
 
         <TextView
             android:layout_width="120dp"

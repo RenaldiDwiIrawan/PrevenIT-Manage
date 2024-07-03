@@ -100,22 +100,22 @@
             app:layout_constraintTop_toTopOf="@+id/pic"
             tools:ignore="MissingConstraints" />
 
-        <EditText
-            android:id="@+id/epic"
-            android:layout_width="220dp"
+        <Spinner
+            android:id="@+id/spinner_pic_maintenance"
+            android:layout_width="150dp"
             android:layout_height="wrap_content"
-            android:hint="Masukan Thermal / Suhu"
             android:layout_marginLeft="10dp"
             app:layout_constraintBottom_toBottomOf="@+id/pic"
             app:layout_constraintStart_toEndOf="@+id/pic"
-            app:layout_constraintTop_toTopOf="@+id/pic" />
+            app:layout_constraintTop_toTopOf="@+id/pic"
+            android:entries="@array/pic"/>
 
         <TextView
-            android:id="@+id/txt_thermal"
+            android:id="@+id/asset_tag_maintenance"
             android:layout_width="120dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="40dp"
-            android:text="Thermal / Suhu"
+            android:layout_marginTop="30dp"
+            android:text="Asset Tag"
             app:layout_constraintEnd_toEndOf="@+id/pic"
             app:layout_constraintStart_toStartOf="@+id/pic"
             app:layout_constraintTop_toBottomOf="@+id/pic"
@@ -125,20 +125,50 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text=" : "
-            app:layout_constraintBottom_toBottomOf="@+id/txt_thermal"
-            app:layout_constraintLeft_toRightOf="@+id/txt_thermal"
-            app:layout_constraintTop_toTopOf="@+id/txt_thermal"
+            app:layout_constraintBottom_toBottomOf="@+id/asset_tag_maintenance"
+            app:layout_constraintLeft_toRightOf="@+id/asset_tag_maintenance"
+            app:layout_constraintTop_toTopOf="@+id/asset_tag_maintenance"
+            tools:ignore="MissingConstraints" />
+
+        <Spinner
+            android:id="@+id/spinner_asset_tag_maintenance"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            app:layout_constraintBottom_toBottomOf="@+id/asset_tag_maintenance"
+            app:layout_constraintStart_toEndOf="@+id/asset_tag_maintenance"
+            app:layout_constraintTop_toTopOf="@+id/asset_tag_maintenance" />
+
+        <TextView
+            android:id="@+id/txt_nPerangkat"
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
+            android:text="Nama Perangkat"
+            app:layout_constraintEnd_toEndOf="@+id/asset_tag_maintenance"
+            app:layout_constraintStart_toStartOf="@+id/asset_tag_maintenance"
+            app:layout_constraintTop_toBottomOf="@+id/asset_tag_maintenance"
+            tools:ignore="MissingConstraints" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=" : "
+            app:layout_constraintBottom_toBottomOf="@+id/txt_nPerangkat"
+            app:layout_constraintLeft_toRightOf="@+id/txt_nPerangkat"
+            app:layout_constraintTop_toTopOf="@+id/txt_nPerangkat"
             tools:ignore="MissingConstraints" />
 
         <EditText
-            android:id="@+id/thermal_edit"
+            android:id="@+id/nPerangkat_edit"
             android:layout_width="220dp"
             android:layout_height="wrap_content"
-            android:hint="Masukan Thermal / Suhu"
+            android:hint="Masukan Nama Perangkat"
+            android:textSize="16dp"
             android:layout_marginLeft="10dp"
-            app:layout_constraintBottom_toBottomOf="@+id/txt_thermal"
-            app:layout_constraintStart_toEndOf="@+id/txt_thermal"
-            app:layout_constraintTop_toTopOf="@+id/txt_thermal" />
+            app:layout_constraintBottom_toBottomOf="@+id/txt_nPerangkat"
+            app:layout_constraintStart_toEndOf="@+id/txt_nPerangkat"
+            app:layout_constraintTop_toTopOf="@+id/txt_nPerangkat" />
 
         <TextView
             android:id="@+id/txt_software"
@@ -146,9 +176,9 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="50dp"
             android:text="Software"
-            app:layout_constraintEnd_toEndOf="@+id/txt_thermal"
-            app:layout_constraintStart_toStartOf="@+id/txt_thermal"
-            app:layout_constraintTop_toBottomOf="@+id/txt_thermal"
+            app:layout_constraintEnd_toEndOf="@+id/txt_nPerangkat"
+            app:layout_constraintStart_toStartOf="@+id/txt_nPerangkat"
+            app:layout_constraintTop_toBottomOf="@+id/txt_nPerangkat"
             tools:ignore="MissingConstraints" />
 
         <TextView
@@ -165,17 +195,18 @@
             android:layout_width="200dp"
             android:layout_height="wrap_content"
             android:hint="Masukan Software"
+            android:textSize="16dp"
             android:layout_marginLeft="10dp"
             app:layout_constraintBottom_toBottomOf="@+id/txt_software"
             app:layout_constraintStart_toEndOf="@id/txt_software"
             app:layout_constraintTop_toTopOf="@+id/txt_software" />
 
         <TextView
-            android:id="@+id/txt_printer"
+            android:id="@+id/txt_kondisi"
             android:layout_width="120dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="40dp"
-            android:text="Kebersihan \n Printer "
+            android:text="Kondisi \nSaat Ini"
             app:layout_constraintEnd_toEndOf="@+id/txt_software"
             app:layout_constraintStart_toStartOf="@+id/txt_software"
             app:layout_constraintTop_toBottomOf="@+id/txt_software"
@@ -185,103 +216,106 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text=" : "
-            app:layout_constraintBottom_toBottomOf="@+id/txt_printer"
-            app:layout_constraintLeft_toRightOf="@+id/txt_printer"
-            app:layout_constraintTop_toTopOf="@+id/txt_printer"
+            app:layout_constraintBottom_toBottomOf="@+id/txt_kondisi"
+            app:layout_constraintLeft_toRightOf="@+id/txt_kondisi"
+            app:layout_constraintTop_toTopOf="@+id/txt_kondisi"
             tools:ignore="MissingConstraints" />
 
         <EditText
-            android:id="@+id/printer_edit"
+            android:id="@+id/kondisi_edit"
             android:layout_width="220dp"
             android:layout_height="wrap_content"
-            android:hint="Masukan Kebersihan Printer"
+            android:hint="Masukan Kondisi"
+            android:textSize="16dp"
             android:layout_marginLeft="10dp"
-            app:layout_constraintBottom_toBottomOf="@+id/txt_printer"
-            app:layout_constraintStart_toEndOf="@id/txt_printer"
-            app:layout_constraintTop_toTopOf="@+id/txt_printer" />
+            app:layout_constraintBottom_toBottomOf="@+id/txt_kondisi"
+            app:layout_constraintStart_toEndOf="@id/txt_kondisi"
+            app:layout_constraintTop_toTopOf="@+id/txt_kondisi" />
 
         <TextView
-            android:id="@+id/txt_testPrint"
+            android:id="@+id/txt_dPekerjaan"
             android:layout_width="120dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="40dp"
-            android:text="Test Printer"
-            app:layout_constraintStart_toStartOf="@+id/txt_printer"
-            app:layout_constraintTop_toBottomOf="@+id/txt_printer"
+            android:text="Deskirpsikan \nPekerjaan"
+            app:layout_constraintStart_toStartOf="@+id/txt_kondisi"
+            app:layout_constraintTop_toBottomOf="@+id/txt_kondisi"
             tools:ignore="MissingConstraints" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text=" : "
-            app:layout_constraintBottom_toBottomOf="@+id/txt_testPrint"
-            app:layout_constraintLeft_toRightOf="@+id/txt_testPrint"
-            app:layout_constraintTop_toTopOf="@+id/txt_testPrint"
+            app:layout_constraintBottom_toBottomOf="@+id/txt_dPekerjaan"
+            app:layout_constraintLeft_toRightOf="@+id/txt_dPekerjaan"
+            app:layout_constraintTop_toTopOf="@+id/txt_dPekerjaan"
             tools:ignore="MissingConstraints" />
 
         <EditText
-            android:id="@+id/testPrint_edit"
+            android:id="@+id/dPekerjaan_edit"
             android:layout_width="200dp"
             android:layout_height="wrap_content"
-            android:hint="Masukan Test Printer"
+            android:textSize="16dp"
+            android:hint="Masukan Deskripsi Pekerjaan"
             android:layout_marginLeft="10dp"
-            app:layout_constraintBottom_toBottomOf="@+id/txt_testPrint"
-            app:layout_constraintStart_toEndOf="@id/txt_testPrint"
-            app:layout_constraintTop_toTopOf="@+id/txt_testPrint" />
+            app:layout_constraintBottom_toBottomOf="@+id/txt_dPekerjaan"
+            app:layout_constraintStart_toEndOf="@id/txt_dPekerjaan"
+            app:layout_constraintTop_toTopOf="@+id/txt_dPekerjaan" />
 
-        <TextView
-            android:id="@+id/txt_signature"
-            android:layout_width="120dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="40dp"
-            android:text="Signature"
-            app:layout_constraintStart_toStartOf="@+id/txt_testPrint"
-            app:layout_constraintTop_toBottomOf="@+id/txt_testPrint"
-            tools:ignore="MissingConstraints" />
+<!--        <TextView-->
+<!--            android:id="@+id/txt_signature"-->
+<!--            android:layout_width="120dp"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginTop="40dp"-->
+<!--            android:text="Signature"-->
+<!--            app:layout_constraintStart_toStartOf="@+id/txt_dPekerjaan"-->
+<!--            app:layout_constraintTop_toBottomOf="@+id/txt_dPekerjaan"-->
+<!--            tools:ignore="MissingConstraints" />-->
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text=" : "
-            app:layout_constraintBottom_toBottomOf="@+id/txt_signature"
-            app:layout_constraintLeft_toRightOf="@+id/txt_signature"
-            app:layout_constraintTop_toTopOf="@+id/txt_signature"
-            tools:ignore="MissingConstraints" />
+<!--        <TextView-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text=" : "-->
+<!--            app:layout_constraintBottom_toBottomOf="@+id/txt_signature"-->
+<!--            app:layout_constraintLeft_toRightOf="@+id/txt_signature"-->
+<!--            app:layout_constraintTop_toTopOf="@+id/txt_signature"-->
+<!--            tools:ignore="MissingConstraints" />-->
 
-        <com.github.gcacace.signaturepad.views.SignaturePad
-            android:id="@+id/signaturePad"
-            android:layout_width="220dp"
-            android:layout_height="120dp"
-            android:layout_marginLeft="15dp"
-            android:background="@color/white"
-            app:layout_constraintStart_toEndOf="@id/txt_signature"
-            app:layout_constraintTop_toTopOf="@+id/txt_signature"/>
+<!--        <com.github.gcacace.signaturepad.views.SignaturePad-->
+<!--            android:id="@+id/signaturePad"-->
+<!--            android:layout_width="220dp"-->
+<!--            android:layout_height="150dp"-->
+<!--            android:layout_marginLeft="15dp"-->
+<!--            android:background="@color/black"-->
+<!--            app:penColor="@color/base"-->
+<!--            app:layout_constraintStart_toEndOf="@id/txt_signature"-->
+<!--            app:layout_constraintTop_toTopOf="@+id/txt_signature"/>-->
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <androidx.cardview.widget.CardView
-        android:id="@+id/reset_signature"
-        android:layout_width="100dp"
-        android:layout_height="50dp"
-        android:layout_marginTop="20dp"
-        android:backgroundTint="@color/base"
-        android:layout_marginLeft="20dp"
-        app:layout_constraintStart_toEndOf="@+id/card_submit_maintenance"
-        app:layout_constraintTop_toBottomOf="@+id/constraintLayout">
+<!--    <androidx.cardview.widget.CardView-->
+<!--        android:id="@+id/reset_signature"-->
+<!--        android:layout_width="100dp"-->
+<!--        android:layout_height="50dp"-->
+<!--        android:layout_marginTop="20dp"-->
+<!--        android:backgroundTint="@color/base"-->
+<!--        android:layout_marginLeft="20dp"-->
+<!--        app:layout_constraintStart_toEndOf="@+id/card_submit_maintenance"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/constraintLayout">-->
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:backgroundTint="#B31C65B2"
-            android:text="Reset \n Signature"
-            android:textSize="14dp"
-            android:gravity="center"
-            android:layout_margin="3dp"
-            android:textColor="@color/white"
-            app:layout_constraintStart_toEndOf="@+id/card_submit_maintenance"
-            app:layout_constraintTop_toBottomOf="@+id/constraintLayout" />
+<!--        <TextView-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="match_parent"-->
+<!--            android:backgroundTint="#B31C65B2"-->
+<!--            android:text="Reset \n Signature"-->
+<!--            android:textSize="14dp"-->
+<!--            android:gravity="center"-->
+<!--            android:layout_margin="3dp"-->
+<!--            android:textColor="@color/white"-->
+<!--            app:layout_constraintStart_toEndOf="@+id/card_submit_maintenance"-->
+<!--            app:layout_constraintTop_toBottomOf="@+id/constraintLayout" />-->
 
-    </androidx.cardview.widget.CardView>
+<!--    </androidx.cardview.widget.CardView>-->
 
     <androidx.cardview.widget.CardView
         android:id="@+id/card_submit_maintenance"
@@ -289,19 +323,18 @@
         android:layout_height="50dp"
         android:layout_marginTop="20dp"
         android:backgroundTint="@color/base"
-        app:layout_constraintEnd_toEndOf="@+id/constraintLayout"
+        app:layout_constraintEnd_toStartOf="@+id/card_dashboard_inventory"
         app:layout_constraintStart_toStartOf="@+id/constraintLayout"
         app:layout_constraintTop_toBottomOf="@+id/constraintLayout">
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:text="SUBMIT"
-            android:textColor="@color/white"
-            android:textSize="18dp"
             android:layout_margin="10dp"
             android:gravity="center"
-            />
+            android:text="SUBMIT"
+            android:textColor="@color/white"
+            android:textSize="18dp" />
     </androidx.cardview.widget.CardView>
 
     <androidx.cardview.widget.CardView
@@ -310,9 +343,10 @@
         android:layout_height="50dp"
         android:layout_marginTop="20dp"
         android:backgroundTint="@color/base"
-        app:layout_constraintEnd_toEndOf="@+id/reset_signature"
-        app:layout_constraintStart_toStartOf="@+id/card_submit_maintenance"
-        app:layout_constraintTop_toBottomOf="@+id/card_submit_maintenance">
+        app:layout_constraintEnd_toEndOf="@+id/constraintLayout"
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout"
+        app:layout_constraintStart_toEndOf="@id/card_submit_maintenance"
+        app:layout_constraintVertical_bias="1.0">
 
         <TextView
             android:layout_width="120dp"
