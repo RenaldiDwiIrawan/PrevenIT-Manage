@@ -62,7 +62,7 @@
 
         <TextView
             android:id="@+id/txt_kalender_maintenance"
-            android:layout_width="wrap_content"
+            android:layout_width="220dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
             android:hint="Ketuk untuk memasukan kalender"
@@ -102,7 +102,7 @@
 
         <Spinner
             android:id="@+id/spinner_pic_maintenance"
-            android:layout_width="150dp"
+            android:layout_width="220dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
             app:layout_constraintBottom_toBottomOf="@+id/pic"
@@ -132,7 +132,7 @@
 
         <Spinner
             android:id="@+id/spinner_asset_tag_maintenance"
-            android:layout_width="150dp"
+            android:layout_width="220dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
             app:layout_constraintBottom_toBottomOf="@+id/asset_tag_maintenance"
@@ -192,7 +192,7 @@
 
         <EditText
             android:id="@+id/software_edit"
-            android:layout_width="200dp"
+            android:layout_width="220dp"
             android:layout_height="wrap_content"
             android:hint="Masukan Software"
             android:textSize="16dp"
@@ -253,7 +253,7 @@
 
         <EditText
             android:id="@+id/dPekerjaan_edit"
-            android:layout_width="200dp"
+            android:layout_width="220dp"
             android:layout_height="wrap_content"
             android:textSize="16dp"
             android:hint="Masukan Deskripsi Pekerjaan"

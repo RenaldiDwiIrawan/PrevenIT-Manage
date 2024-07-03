@@ -66,9 +66,19 @@
 
         <Spinner
             android:id="@+id/spinner_asset_inv"
-            android:layout_width="150dp"
+            android:layout_width="220dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
+            app:layout_constraintBottom_toBottomOf="@+id/asset_tag"
+            app:layout_constraintStart_toEndOf="@+id/asset_tag"
+            app:layout_constraintTop_toTopOf="@+id/asset_tag" />
+
+        <EditText
+            android:id="@+id/tambah_asset_inv"
+            android:layout_width="220dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:text="Asset Tag"
             app:layout_constraintBottom_toBottomOf="@+id/asset_tag"
             app:layout_constraintStart_toEndOf="@+id/asset_tag"
             app:layout_constraintTop_toTopOf="@+id/asset_tag" />
@@ -93,7 +103,7 @@
 
         <EditText
             android:id="@+id/user_db"
-            android:layout_width="wrap_content"
+            android:layout_width="220dp"
             android:layout_height="wrap_content"
             android:text="user dari dari db"
             android:layout_marginLeft="10dp"
@@ -149,7 +159,7 @@
 
         <EditText
             android:id="@+id/departement_db"
-            android:layout_width="wrap_content"
+            android:layout_width="220dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
             android:text="departement dari dari db"
@@ -177,7 +187,7 @@
 
         <EditText
             android:id="@+id/aset_db"
-            android:layout_width="wrap_content"
+            android:layout_width="220dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
             android:text="Asset dari dari db"
@@ -205,7 +215,7 @@
 
         <EditText
             android:id="@+id/jumlah_db"
-            android:layout_width="wrap_content"
+            android:layout_width="220dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
             android:text="Jumlah dari db"
@@ -249,7 +259,7 @@
         android:layout_height="wrap_content"
         android:backgroundTint="#B31C65B2"
         app:layout_constraintEnd_toEndOf="@+id/constraintLayout"
-        app:layout_constraintStart_toStartOf="@+id/constraintLayout"
+        app:layout_constraintStart_toEndOf="@+id/card_tambah_inventory"
         app:layout_constraintTop_toBottomOf="@+id/constraintLayout">
 
         <TextView
@@ -257,7 +267,47 @@
             android:layout_height="25dp"
             android:text="EDIT DATA"
             android:textColor="@color/white"
-            android:textSize="18dp"
+            android:textSize="14dp"
+            android:layout_margin="10dp"
+            android:gravity="center"
+            />
+
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/card_tambah_inventory"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="#B31C65B2"
+        app:layout_constraintEnd_toStartOf="@+id/card_edit_inventory"
+        app:layout_constraintStart_toStartOf="@+id/constraintLayout"
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout">
+
+        <TextView
+            android:layout_width="120dp"
+            android:layout_height="25dp"
+            android:text="TAMBAH DATA"
+            android:textColor="@color/white"
+            android:textSize="14dp"
+            android:layout_margin="10dp"
+            android:gravity="center"
+            />
+    </androidx.cardview.widget.CardView>
+    <androidx.cardview.widget.CardView
+        android:id="@+id/card_simpan_tambah_inventory"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="#B31C65B2"
+        app:layout_constraintEnd_toEndOf="@+id/constraintLayout"
+        app:layout_constraintStart_toStartOf="@+id/constraintLayout"
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout">
+
+        <TextView
+            android:layout_width="120dp"
+            android:layout_height="25dp"
+            android:text="SIMPAN DATA"
+            android:textColor="@color/white"
+            android:textSize="14dp"
             android:layout_margin="10dp"
             android:gravity="center"
             />

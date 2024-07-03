@@ -8,6 +8,7 @@ import androidx.cardview.widget.CardView;
 
 import android.annotation.SuppressLint;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -18,6 +19,7 @@ import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -27,12 +29,17 @@ import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class InventoryActivity extends AppCompatActivity {
     private Spinner assetTag;
     private ImageView btn_back;
     private CardView edit_data;
+    private CardView tambah_data;
+    private CardView simpan_tambah;
+    private EditText tambah_assettag;
     private EditText user;
 //    private EditText location;
     private EditText departement;
@@ -57,6 +64,9 @@ public class InventoryActivity extends AppCompatActivity {
         });
 
         edit_data = findViewById(R.id.card_edit_inventory);
+        tambah_data = findViewById(R.id.card_tambah_inventory);
+        tambah_assettag = findViewById(R.id.tambah_asset_inv);
+        simpan_tambah = findViewById(R.id.card_simpan_tambah_inventory);
         assetTag = findViewById(R.id.spinner_asset_inv);
         user = findViewById(R.id.user_db);
 //        location = findViewById(R.id.location_db);
@@ -65,6 +75,10 @@ public class InventoryActivity extends AppCompatActivity {
         jumlah = findViewById(R.id.jumlah_db);
 //        company = findViewById(R.id.company_db);
 
+        tambah_assettag.setVisibility(View.GONE);
+        simpan_tambah.setVisibility(View.GONE);
+
+        Intent intent = getIntent();
         List<String> assetTagList = new ArrayList<>();
         ArrayAdapter<String> adapter = new ArrayAdapter<>(InventoryActivity.this,
                 android.R.layout.simple_spinner_item, assetTagList);
@@ -110,6 +124,56 @@ public class InventoryActivity extends AppCompatActivity {
 
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
+            }
+        });
+
+        tambah_data.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                assetTag.setSelection(0);
+                assetTag.setVisibility(View.GONE);
+                tambah_assettag.setVisibility(View.VISIBLE);
+                tambah_assettag.setText("");
+                user.setText("");
+                departement.setText("");
+                aset.setText("");
+                jumlah.setText("");
+
+                simpan_tambah.setVisibility(View.VISIBLE);
+                edit_data.setVisibility(View.GONE);
+                tambah_data.setVisibility(View.GONE);
+            }
+        });
+
+        simpan_tambah.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FirebaseDatabase db = FirebaseDatabase.getInstance();
+                DatabaseReference reff = db.getReference("dataInventory");
+                String newKey = reff.push().getKey();
+
+                String assetTagStr = tambah_assettag.getText().toString();
+                String userStr = user.getText().toString();
+                String departementStr = departement.getText().toString();
+                String namaAsetStr = aset.getText().toString();
+                String jumlahStr = jumlah.getText().toString();
+
+                Map<String, Object> map = new HashMap<>();
+                map.put("asset_tag", assetTagStr);
+                map.put("user", userStr);
+                map.put("departement", departementStr);
+                map.put("nama_aset", namaAsetStr);
+                map.put("jumlah", jumlahStr);
+
+                reff.child(newKey).setValue(map).addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void unused) {
+                        Toast.makeText(InventoryActivity.this, "Data Inventory berhasil ditambahkan", Toast.LENGTH_SHORT).show();
+
+                        Intent intent = new Intent(getApplicationContext(), InventoryActivity.class);
+                        startActivity(intent);
+                    }
+                });
             }
         });
 

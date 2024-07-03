@@ -70,7 +70,7 @@
 
         <TextView
             android:id="@+id/txt_kalender_repair"
-            android:layout_width="wrap_content"
+            android:layout_width="220dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
             android:hint="Ketuk untuk memasukan kalender"
@@ -99,7 +99,7 @@
 
         <Spinner
             android:id="@+id/spinner_pic_repair"
-            android:layout_width="150dp"
+            android:layout_width="220dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
             app:layout_constraintBottom_toBottomOf="@+id/pic"
@@ -128,7 +128,7 @@
 
         <Spinner
             android:id="@+id/spinner_asset_tag_repair"
-            android:layout_width="150dp"
+            android:layout_width="220dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
             app:layout_constraintBottom_toBottomOf="@+id/asset_tag_repair"
@@ -187,7 +187,7 @@
 
         <EditText
             android:id="@+id/eTindakan"
-            android:layout_width="200dp"
+            android:layout_width="220dp"
             android:layout_height="wrap_content"
             android:hint="Masukan Tindakan"
             android:textSize="16dp"
@@ -217,7 +217,7 @@
 
         <EditText
             android:id="@+id/eKeterangan"
-            android:layout_width="200dp"
+            android:layout_width="220dp"
             android:layout_height="wrap_content"
             android:hint="Masukan Keterangan"
             android:textSize="16dp"
