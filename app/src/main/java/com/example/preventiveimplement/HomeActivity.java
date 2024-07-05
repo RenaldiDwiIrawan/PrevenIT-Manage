@@ -9,6 +9,7 @@ import android.content.ClipboardManager;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
@@ -35,10 +36,14 @@ public class HomeActivity extends AppCompatActivity {
         report = findViewById(R.id.menuReport);
         logout = findViewById(R.id.iconLogout);
 
+        Intent intent = getIntent();
+        String role = intent.getStringExtra("role");
+
         repair.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent gotoRepair = new Intent(HomeActivity.this, RepairActivity.class);
+                gotoRepair.putExtra("role", role);
                 startActivity(gotoRepair);
             }
         });
@@ -47,6 +52,7 @@ public class HomeActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent gotoMaintenance = new Intent(HomeActivity.this, MaintenanceActivity.class);
+                gotoMaintenance.putExtra("role", role);
                 startActivity(gotoMaintenance);
             }
         });
@@ -55,6 +61,7 @@ public class HomeActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent gotoInventory = new Intent(HomeActivity.this, InventoryActivity.class);
+                gotoInventory.putExtra("role", role);
                 startActivity(gotoInventory);
             }
         });
@@ -63,6 +70,7 @@ public class HomeActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent gotoReport = new Intent(HomeActivity.this, ReportActivity.class);
+                gotoReport.putExtra("role", role);
                 startActivity(gotoReport);
             }
         });

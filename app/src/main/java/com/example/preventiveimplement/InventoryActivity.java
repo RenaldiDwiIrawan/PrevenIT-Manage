@@ -7,8 +7,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -46,6 +48,7 @@ public class InventoryActivity extends AppCompatActivity {
     private EditText aset;
     private EditText jumlah;
 //    private EditText company;
+    DatabaseReference databaseReference;
 
     @SuppressLint({"WrongViewCast", "MissingInflatedId"})
     @Override
@@ -74,11 +77,9 @@ public class InventoryActivity extends AppCompatActivity {
         aset = findViewById(R.id.aset_db);
         jumlah = findViewById(R.id.jumlah_db);
 //        company = findViewById(R.id.company_db);
-
         tambah_assettag.setVisibility(View.GONE);
         simpan_tambah.setVisibility(View.GONE);
 
-        Intent intent = getIntent();
         List<String> assetTagList = new ArrayList<>();
         ArrayAdapter<String> adapter = new ArrayAdapter<>(InventoryActivity.this,
                 android.R.layout.simple_spinner_item, assetTagList);
@@ -126,6 +127,15 @@ public class InventoryActivity extends AppCompatActivity {
             public void onNothingSelected(AdapterView<?> parent) {
             }
         });
+
+
+        Intent intent = getIntent();
+        String role = intent.getStringExtra("role");
+
+        if ("user".equals(role)){
+            tambah_data.setVisibility(View.GONE);
+            edit_data.setVisibility(View.GONE);
+        }
 
         tambah_data.setOnClickListener(new View.OnClickListener() {
             @Override

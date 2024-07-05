@@ -4,7 +4,9 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -51,9 +53,17 @@ public class LoginActivity extends AppCompatActivity {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot snapshot) {
                             if (snapshot.child(username).exists()){
+                                String role = snapshot.child(username).child("role").getValue(String.class);
                                 if (snapshot.child(username).child("password").getValue(String.class).equals(password)){
                                     Toast.makeText(getApplicationContext(), "Welcome in PrevenIT", Toast.LENGTH_SHORT).show();
+
+//                                    SharedPreferences sharedPreferences = getSharedPreferences("userRole", Context.MODE_PRIVATE);
+//                                    SharedPreferences.Editor editor = sharedPreferences.edit();
+//                                    editor.putString("role", role);
+//                                    editor.apply();
+
                                     Intent masuk = new Intent(getApplicationContext(), HomeActivity.class);
+                                    masuk.putExtra("role", role);
                                     startActivity(masuk);
                                 } else {
                                     Toast.makeText(getApplicationContext(), "Username dan Password Salah", Toast.LENGTH_SHORT).show();
