@@ -9,6 +9,7 @@ import android.content.ClipboardManager;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
@@ -21,6 +22,7 @@ import com.google.firebase.auth.FirebaseAuth;
 
 public class HomeActivity extends AppCompatActivity {
     private ImageButton repair, maintenance, inventory, report, logout;
+    private TextView txtRepair, txtMaintenance, txtReport, txtInventory;
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -35,10 +37,26 @@ public class HomeActivity extends AppCompatActivity {
         report = findViewById(R.id.menuReport);
         logout = findViewById(R.id.iconLogout);
 
+        txtInventory = findViewById(R.id.btnMenuInventory);
+        txtRepair = findViewById(R.id.btnMenuRepair);
+        txtMaintenance = findViewById(R.id.btnMenuMaintenance);
+        txtReport = findViewById(R.id.btnMenuReport);
+
+        Intent intent = getIntent();
+        String role = intent.getStringExtra("role");
+
+        if ("user".equals(role)){
+            inventory.setVisibility(View.GONE);
+            report.setVisibility(View.GONE);
+            txtInventory.setVisibility(View.GONE);
+            txtReport.setVisibility(View.GONE);
+        }
+
         repair.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent gotoRepair = new Intent(HomeActivity.this, RepairActivity.class);
+                gotoRepair.putExtra("role", role);
                 startActivity(gotoRepair);
             }
         });
@@ -47,6 +65,7 @@ public class HomeActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent gotoMaintenance = new Intent(HomeActivity.this, MaintenanceActivity.class);
+                gotoMaintenance.putExtra("role", role);
                 startActivity(gotoMaintenance);
             }
         });
@@ -55,6 +74,7 @@ public class HomeActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent gotoInventory = new Intent(HomeActivity.this, InventoryActivity.class);
+                gotoInventory.putExtra("role", role);
                 startActivity(gotoInventory);
             }
         });
@@ -63,6 +83,7 @@ public class HomeActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent gotoReport = new Intent(HomeActivity.this, ReportActivity.class);
+                gotoReport.putExtra("role", role);
                 startActivity(gotoReport);
             }
         });
@@ -73,6 +94,11 @@ public class HomeActivity extends AppCompatActivity {
                 showPopup();
             }
         });
+    }
+
+    @Override
+    public void onBackPressed(){
+        showLogoutConfirmation();
     }
 
     private void showPopup() {
