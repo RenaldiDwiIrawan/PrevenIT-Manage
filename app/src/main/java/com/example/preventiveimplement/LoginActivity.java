@@ -57,11 +57,6 @@ public class LoginActivity extends AppCompatActivity {
                                 if (snapshot.child(username).child("password").getValue(String.class).equals(password)){
                                     Toast.makeText(getApplicationContext(), "Welcome in PrevenIT", Toast.LENGTH_SHORT).show();
 
-//                                    SharedPreferences sharedPreferences = getSharedPreferences("userRole", Context.MODE_PRIVATE);
-//                                    SharedPreferences.Editor editor = sharedPreferences.edit();
-//                                    editor.putString("role", role);
-//                                    editor.apply();
-
                                     Intent masuk = new Intent(getApplicationContext(), HomeActivity.class);
                                     masuk.putExtra("role", role);
                                     startActivity(masuk);

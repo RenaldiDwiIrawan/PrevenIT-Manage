@@ -22,6 +22,7 @@ import com.google.firebase.auth.FirebaseAuth;
 
 public class HomeActivity extends AppCompatActivity {
     private ImageButton repair, maintenance, inventory, report, logout;
+    private TextView txtRepair, txtMaintenance, txtReport, txtInventory;
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -36,8 +37,20 @@ public class HomeActivity extends AppCompatActivity {
         report = findViewById(R.id.menuReport);
         logout = findViewById(R.id.iconLogout);
 
+        txtInventory = findViewById(R.id.btnMenuInventory);
+        txtRepair = findViewById(R.id.btnMenuRepair);
+        txtMaintenance = findViewById(R.id.btnMenuMaintenance);
+        txtReport = findViewById(R.id.btnMenuReport);
+
         Intent intent = getIntent();
         String role = intent.getStringExtra("role");
+
+        if ("user".equals(role)){
+            inventory.setVisibility(View.GONE);
+            report.setVisibility(View.GONE);
+            txtInventory.setVisibility(View.GONE);
+            txtReport.setVisibility(View.GONE);
+        }
 
         repair.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -81,6 +94,11 @@ public class HomeActivity extends AppCompatActivity {
                 showPopup();
             }
         });
+    }
+
+    @Override
+    public void onBackPressed(){
+        showLogoutConfirmation();
     }
 
     private void showPopup() {
