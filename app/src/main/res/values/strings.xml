@@ -12,4 +12,10 @@
 
     <string name="year_prompt">Pilih Tahun</string>
     <string name="month_prompt">Pilih Bulan</string>
+
+    <string-array name="mainpair"> pilih
+        <item>REPAIR</item>
+        <item>MAINTENANCE</item>
+    </string-array>
+
 </resources>

@@ -48,7 +48,7 @@ import java.util.Map;
 public class MaintenanceActivity extends AppCompatActivity {
     private ImageView btn_back;
     private TextView tKalender, txtMaintenance;
-    private CardView submit, reset_ttd, dashboard;
+    private CardView submit, reset_ttd, dashboard, backReport;
     private EditText namaPerangkat, software, kondisi;
     private EditText deskripsi;
     private Spinner pic, assetTag;
@@ -57,6 +57,7 @@ public class MaintenanceActivity extends AppCompatActivity {
 //    private SignaturePad ttd;
 
 
+    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -72,6 +73,7 @@ public class MaintenanceActivity extends AppCompatActivity {
             }
         });
 
+        backReport = findViewById(R.id.cardBackToReportInventory);
         tKalender = findViewById(R.id.txt_kalender_maintenance);
 //        ttd = findViewById(R.id.signaturePad);
         submit = findViewById(R.id.card_submit_maintenance);
@@ -82,13 +84,23 @@ public class MaintenanceActivity extends AppCompatActivity {
         assetTag = findViewById(R.id.spinner_asset_tag_maintenance);
 
         namaPerangkat = findViewById(R.id.nPerangkat_edit);
-        software = findViewById(R.id.software_edit);
+//        software = findViewById(R.id.software_edit);
         kondisi = findViewById(R.id.kondisi_edit);
         deskripsi = findViewById(R.id.dPekerjaan_edit);
         txtMaintenance = findViewById(R.id.txt_maintenance);
 
         Intent intent = getIntent();
         DataModel dataModel = intent.getParcelableExtra("dataPreventITMaintenance");
+
+        String dataFrom = intent.getStringExtra("MAINTENANCE");
+
+        if ("MAINTENANCE".equals(dataFrom)){
+            submit.setVisibility(View.GONE);
+            btn_back.setVisibility(View.GONE);
+
+        } else {
+            backReport.setVisibility(View.GONE);
+        }
 
         List<String> assetTagList = new ArrayList<>();
         ArrayAdapter<String> adapter = new ArrayAdapter<>(MaintenanceActivity.this,
@@ -107,7 +119,14 @@ public class MaintenanceActivity extends AppCompatActivity {
                 query.addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        if (snapshot.exists()) {
+                            for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+                                String namaPerangkatStr = dataSnapshot.child("nama_aset").getValue(String.class);
 
+                                namaPerangkat.setText(namaPerangkatStr);
+                                namaPerangkat.setEnabled(false);
+                            }
+                        }
                     }
 
                     @Override
@@ -172,6 +191,13 @@ public class MaintenanceActivity extends AppCompatActivity {
             }
         });
 
+        backReport.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                toReport();
+            }
+        });
+
         tKalender.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -206,13 +232,6 @@ public class MaintenanceActivity extends AppCompatActivity {
             }
         });
 
-//        reset_ttd.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                ttd.clear();
-//            }
-//        });
-
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -229,51 +248,49 @@ public class MaintenanceActivity extends AppCompatActivity {
                 String assetTagStr = assetTag.getSelectedItem().toString();
 
                 String namaPerangkatStr = namaPerangkat.getText().toString();
-                String softwareStr = software.getText().toString();
                 String kondisiStr = kondisi.getText().toString();
                 String deskripsiStr = deskripsi.getText().toString();
                 String txtMaintenanceStr = txtMaintenance.getText().toString();
                 String formattedDay = String.format("%02d", tanggal);
                 String formattedMonth = String.format("%02d", (bulan + 1));
-//                String Base64 = convertSignatureToBase64();
 
-                Map<String, Object> dataMaintenanceMap = new HashMap<>();
-                dataMaintenanceMap.put("kalender", formattedDay + "-" + namaBulan + "-" + tahun);
-                dataMaintenanceMap.put("kalender_filter", formattedMonth + "-" + tahun);
-                dataMaintenanceMap.put("hari", hari);
-                dataMaintenanceMap.put("waktu", waktu);
+                if (namaBulan.isEmpty() || kondisiStr.isEmpty() || deskripsiStr.isEmpty()){
+                    Toast.makeText(MaintenanceActivity.this, "Data tidak boleh kosong", Toast.LENGTH_SHORT).show();
+                    return;
+                } else  {
+                    Map<String, Object> dataMaintenanceMap = new HashMap<>();
+                    dataMaintenanceMap.put("kalender", formattedDay + "-" + namaBulan + "-" + tahun);
+                    dataMaintenanceMap.put("kalender_filter", formattedMonth + "-" + tahun);
+                    dataMaintenanceMap.put("hari", hari);
+                    dataMaintenanceMap.put("waktu", waktu);
 
-                dataMaintenanceMap.put("pic", picStr);
-                dataMaintenanceMap.put("asset_tag", assetTagStr);
+                    dataMaintenanceMap.put("pic", picStr);
+                    dataMaintenanceMap.put("asset_tag", assetTagStr);
 
-                dataMaintenanceMap.put("nama_perangkat", namaPerangkatStr);
-                dataMaintenanceMap.put("software", softwareStr);
-                dataMaintenanceMap.put("kondisi", kondisiStr);
-                dataMaintenanceMap.put("deskripsi", deskripsiStr);
-                dataMaintenanceMap.put("dataFrom", txtMaintenanceStr);
-//                dataMaintenanceMap.put("signature", ttdBase64);
+                    dataMaintenanceMap.put("nama_perangkat", namaPerangkatStr);
+                    dataMaintenanceMap.put("kondisi", kondisiStr);
+                    dataMaintenanceMap.put("deskripsi", deskripsiStr);
+                    dataMaintenanceMap.put("dataFrom", txtMaintenanceStr);
 
 
-                reff.child(newKey).setValue(dataMaintenanceMap).addOnSuccessListener(new OnSuccessListener<Void>() {
-                    @Override
-                    public void onSuccess(Void unused) {
-                        Toast.makeText(MaintenanceActivity.this, "Data berhasil disimpan", Toast.LENGTH_SHORT).show();
+                    reff.child(newKey).setValue(dataMaintenanceMap).addOnSuccessListener(new OnSuccessListener<Void>() {
+                        @Override
+                        public void onSuccess(Void unused) {
+                            Toast.makeText(MaintenanceActivity.this, "Data berhasil disimpan", Toast.LENGTH_SHORT).show();
 
-                        pic.setSelection(0);
-                        assetTag.setSelection(0);
-
-                        namaPerangkat.setText("");
-                        software.setText("");
-                        kondisi.setText("");
-                        deskripsi.setText("");
-//                        ttd.clear();
-                    }
-                }).addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        Toast.makeText(MaintenanceActivity.this, "Data gagal disimpan", Toast.LENGTH_SHORT).show();
-                    }
-                });
+                            pic.setSelection(0);
+                            assetTag.setSelection(0);
+                            namaPerangkat.setText("");
+                            kondisi.setText("");
+                            deskripsi.setText("");
+                        }
+                    }).addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            Toast.makeText(MaintenanceActivity.this, "Data gagal disimpan", Toast.LENGTH_SHORT).show();
+                        }
+                    });
+                }
             }
         });
 
@@ -316,7 +333,7 @@ public class MaintenanceActivity extends AppCompatActivity {
                 pic.setAdapter(adapterIntentPic);
                 assetTag.setAdapter(adapterIntentAsset_tag);
                 namaPerangkat.setText(dataModel.getNama_perangkat());
-                software.setText(dataModel.getSoftware());
+//                software.setText(dataModel.getSoftware());
                 kondisi.setText(dataModel.getKondisi());
                 deskripsi.setText(dataModel.getDeskripsi());
 //                setSignatureFromBase64(dataModel.getSignature());
@@ -325,7 +342,7 @@ public class MaintenanceActivity extends AppCompatActivity {
                 pic.setEnabled(false);
                 assetTag.setEnabled(false);
                 namaPerangkat.setEnabled(false);
-                software.setEnabled(false);
+//                software.setEnabled(false);
                 kondisi.setEnabled(false);
                 deskripsi.setEnabled(false);
 //                ttd.setEnabled(false);
@@ -336,6 +353,11 @@ public class MaintenanceActivity extends AppCompatActivity {
     private void toDashboard () {
         Intent dashboard = new Intent(MaintenanceActivity.this, HomeActivity.class);
         startActivity(dashboard);
+    }
+
+    private void toReport(){
+        Intent report = new Intent(MaintenanceActivity.this, ReportActivity.class);
+        startActivity(report);
     }
 
 //    private String convertSignatureToBase64() {

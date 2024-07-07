@@ -44,7 +44,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout"
         android:layout_width="match_parent"
-        android:layout_height="480dp"
+        android:layout_height="400dp"
         android:layout_marginLeft="35dp"
         android:layout_marginTop="20dp"
         android:layout_marginRight="20dp"
@@ -170,36 +170,36 @@
             app:layout_constraintStart_toEndOf="@+id/txt_nPerangkat"
             app:layout_constraintTop_toTopOf="@+id/txt_nPerangkat" />
 
-        <TextView
-            android:id="@+id/txt_software"
-            android:layout_width="120dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="50dp"
-            android:text="Software"
-            app:layout_constraintEnd_toEndOf="@+id/txt_nPerangkat"
-            app:layout_constraintStart_toStartOf="@+id/txt_nPerangkat"
-            app:layout_constraintTop_toBottomOf="@+id/txt_nPerangkat"
-            tools:ignore="MissingConstraints" />
+<!--        <TextView-->
+<!--            android:id="@+id/txt_software"-->
+<!--            android:layout_width="120dp"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginTop="50dp"-->
+<!--            android:text="Software"-->
+<!--            app:layout_constraintEnd_toEndOf="@+id/txt_nPerangkat"-->
+<!--            app:layout_constraintStart_toStartOf="@+id/txt_nPerangkat"-->
+<!--            app:layout_constraintTop_toBottomOf="@+id/txt_nPerangkat"-->
+<!--            tools:ignore="MissingConstraints" />-->
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text=" : "
-            app:layout_constraintBottom_toBottomOf="@+id/txt_software"
-            app:layout_constraintLeft_toRightOf="@+id/txt_software"
-            app:layout_constraintTop_toTopOf="@+id/txt_software"
-            tools:ignore="MissingConstraints" />
+<!--        <TextView-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text=" : "-->
+<!--            app:layout_constraintBottom_toBottomOf="@+id/txt_software"-->
+<!--            app:layout_constraintLeft_toRightOf="@+id/txt_software"-->
+<!--            app:layout_constraintTop_toTopOf="@+id/txt_software"-->
+<!--            tools:ignore="MissingConstraints" />-->
 
-        <EditText
-            android:id="@+id/software_edit"
-            android:layout_width="220dp"
-            android:layout_height="wrap_content"
-            android:hint="Masukan Software"
-            android:textSize="16dp"
-            android:layout_marginLeft="10dp"
-            app:layout_constraintBottom_toBottomOf="@+id/txt_software"
-            app:layout_constraintStart_toEndOf="@id/txt_software"
-            app:layout_constraintTop_toTopOf="@+id/txt_software" />
+<!--        <EditText-->
+<!--            android:id="@+id/software_edit"-->
+<!--            android:layout_width="220dp"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:hint="Masukan Software"-->
+<!--            android:textSize="16dp"-->
+<!--            android:layout_marginLeft="10dp"-->
+<!--            app:layout_constraintBottom_toBottomOf="@+id/txt_software"-->
+<!--            app:layout_constraintStart_toEndOf="@id/txt_software"-->
+<!--            app:layout_constraintTop_toTopOf="@+id/txt_software" />-->
 
         <TextView
             android:id="@+id/txt_kondisi"
@@ -207,9 +207,9 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="40dp"
             android:text="Kondisi \nSaat Ini"
-            app:layout_constraintEnd_toEndOf="@+id/txt_software"
-            app:layout_constraintStart_toStartOf="@+id/txt_software"
-            app:layout_constraintTop_toBottomOf="@+id/txt_software"
+            app:layout_constraintEnd_toEndOf="@+id/txt_nPerangkat"
+            app:layout_constraintStart_toStartOf="@+id/txt_nPerangkat"
+            app:layout_constraintTop_toBottomOf="@+id/txt_nPerangkat"
             tools:ignore="MissingConstraints" />
 
         <TextView
@@ -339,7 +339,7 @@
 
     <androidx.cardview.widget.CardView
         android:id="@+id/card_dashboard_inventory"
-        android:layout_width="wrap_content"
+        android:layout_width="150dp"
         android:layout_height="50dp"
         android:layout_marginTop="20dp"
         android:backgroundTint="@color/base"
@@ -356,6 +356,26 @@
             android:text="DASHBOARD"
             android:textColor="@color/white"
             android:textSize="18dp" />
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardBackToReportInventory"
+        android:layout_width="150dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="20dp"
+        android:backgroundTint="@color/base"
+        app:layout_constraintStart_toStartOf="@+id/card_dashboard_inventory"
+        app:layout_constraintTop_toBottomOf="@+id/card_dashboard_inventory">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="Back To Report"
+            android:textColor="@color/white"
+            android:textSize="18dp"
+            android:layout_margin="10dp"
+            android:gravity="center"
+            />
     </androidx.cardview.widget.CardView>
 
 

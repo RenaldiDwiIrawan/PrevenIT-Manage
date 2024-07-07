@@ -43,16 +43,17 @@ import java.util.Map;
 
 public class RepairActivity extends AppCompatActivity {
     private ImageView btn_back;
-    private CardView submit, btnDashboard, reset_ttd;
+    private CardView submit, btnDashboard, reset_ttd, btnBackReport;
 
     private Spinner pic, assetTag;
     private TextView tKalender, txtRepair;
-    private EditText jKerusakan, tindakan, keterangan ;
+    private EditText jKerusakan, tindakan, keterangan, namaPerangkat;
     private int tahun, bulan, tanggal;
     private String waktu, hari;
     private SignaturePad ttd;
 
 
+    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -67,22 +68,32 @@ public class RepairActivity extends AppCompatActivity {
             }
         });
 
+        btnBackReport = findViewById(R.id.cardBackToReportRepair);
         tKalender = findViewById(R.id.txt_kalender_repair);
         submit = findViewById(R.id.cardSubmit_repair);
         btnDashboard = findViewById(R.id.cardDashboard_repair);
-//        reset_ttd = findViewById(R.id.reset_signature_repair);
-//        ttd = findViewById(R.id.signaturePad_repair);
 
         jKerusakan = findViewById(R.id.eJenis_kerusakan);
         tindakan = findViewById(R.id.eTindakan);
         keterangan = findViewById(R.id.eKeterangan);
         txtRepair = findViewById(R.id.txt_repair);
+        namaPerangkat = findViewById(R.id.eNamaPerangkat);
 
         pic = findViewById(R.id.spinner_pic_repair);
         assetTag = findViewById(R.id.spinner_asset_tag_repair);
 
+        btnBackReport.setVisibility(View.GONE);
+
         Intent intent = getIntent();
         DataModel dataModel = intent.getParcelableExtra("dataPrevenIT");
+
+        String fromReport = intent.getStringExtra("REPAIR");
+
+        if ("REPAIR".equals(fromReport)) {
+            submit.setVisibility(View.GONE);
+            btn_back.setVisibility(View.GONE);
+            btnBackReport.setVisibility(View.VISIBLE);
+        }
 
         List<String> assetTagList = new ArrayList<>();
         ArrayAdapter<String> adapter = new ArrayAdapter<>(RepairActivity.this,
@@ -94,13 +105,20 @@ public class RepairActivity extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 String selectedAssetTag = (String) parent.getItemAtPosition(position);
-                DatabaseReference databaseReff = FirebaseDatabase.getInstance().getReference().child("dataPrevenIT");
+                DatabaseReference databaseReff = FirebaseDatabase.getInstance().getReference().child("dataInventory");
                 Query query = databaseReff.orderByChild("asset_tag").equalTo(selectedAssetTag);
 
                 query.addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        if (snapshot.exists()) {
+                            for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+                                String namaPerangkatStr = dataSnapshot.child("nama_aset").getValue(String.class);
 
+                                namaPerangkat.setText(namaPerangkatStr);
+                                namaPerangkat.setEnabled(false);
+                            }
+                        }
                     }
 
                     @Override
@@ -109,6 +127,7 @@ public class RepairActivity extends AppCompatActivity {
                     }
                 });
             }
+
             @Override
             public void onNothingSelected(AdapterView<?> adapterView) {
 
@@ -165,12 +184,12 @@ public class RepairActivity extends AppCompatActivity {
             }
         });
 
-//        reset_ttd.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                ttd.clear();
-//            }
-//        });
+        btnBackReport.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                backToReport();
+            }
+        });
 
         tKalender.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -218,49 +237,54 @@ public class RepairActivity extends AppCompatActivity {
                 SimpleDateFormat dateFormat = new SimpleDateFormat("MMMM", new Locale("id"));
                 String namaBulan = dateFormat.format(date);
 
-                String jenisKerusakanStr    = jKerusakan.getText().toString();
-                String tindakanStr          = tindakan.getText().toString();
-                String keteranganStr        = keterangan.getText().toString();
+                String jenisKerusakanStr = jKerusakan.getText().toString();
+                String tindakanStr = tindakan.getText().toString();
+                String keteranganStr = keterangan.getText().toString();
 
-                String ePicStr              = pic.getSelectedItem().toString();
-                String assetTagStr          = assetTag.getSelectedItem().toString();
+                String ePicStr = pic.getSelectedItem().toString();
+                String assetTagStr = assetTag.getSelectedItem().toString();
 
-                String txtRepairStr         = txtRepair.getText().toString();
-                String formattedDay         = String.format("%02d", tanggal);
-                String formattedMonth       = String.format("%02d", (bulan + 1));
+                String txtRepairStr = txtRepair.getText().toString();
+                String formattedDay = String.format("%02d", tanggal);
+                String formattedMonth = String.format("%02d", (bulan + 1));
 
-                Map<String, Object> dataRepairMap = new HashMap<>();
-                dataRepairMap.put("kalender", formattedDay + "-" + namaBulan + "-" + tahun);
-                dataRepairMap.put("kalender_filter", formattedMonth + "-" + tahun);
-                dataRepairMap.put("waktu", waktu);
-                dataRepairMap.put("hari", hari);
-                dataRepairMap.put("pic", ePicStr);
-                dataRepairMap.put("asset_tag", assetTagStr);
-                dataRepairMap.put("jenis_kerusakan", jenisKerusakanStr);
-                dataRepairMap.put("tindakan", tindakanStr);
-                dataRepairMap.put("keterangan", keteranganStr);
-                dataRepairMap.put("dataFrom", txtRepairStr);
+                if (jenisKerusakanStr.isEmpty() || namaBulan.isEmpty() || tindakanStr.isEmpty()
+                        || keteranganStr.isEmpty() || ePicStr.isEmpty() || assetTagStr.isEmpty()) {
+                    Toast.makeText(RepairActivity.this, "Data tidak boleh kosong", Toast.LENGTH_SHORT).show();
+                    return;
+                } else {
+                    Map<String, Object> dataRepairMap = new HashMap<>();
+                    dataRepairMap.put("kalender", formattedDay + "-" + namaBulan + "-" + tahun);
+                    dataRepairMap.put("kalender_filter", formattedMonth + "-" + tahun);
+                    dataRepairMap.put("waktu", waktu);
+                    dataRepairMap.put("hari", hari);
+                    dataRepairMap.put("pic", ePicStr);
+                    dataRepairMap.put("asset_tag", assetTagStr);
+                    dataRepairMap.put("jenis_kerusakan", jenisKerusakanStr);
+                    dataRepairMap.put("tindakan", tindakanStr);
+                    dataRepairMap.put("keterangan", keteranganStr);
+                    dataRepairMap.put("dataFrom", txtRepairStr);
 
-                reff.child(newKey).setValue(dataRepairMap).addOnSuccessListener(new OnSuccessListener<Void>() {
-                    @Override
-                    public void onSuccess(Void unused) {
-                        Toast.makeText(RepairActivity.this, "Data berhasil disimpan", Toast.LENGTH_SHORT).show();
+                    reff.child(newKey).setValue(dataRepairMap).addOnSuccessListener(new OnSuccessListener<Void>() {
+                        @Override
+                        public void onSuccess(Void unused) {
+                            Toast.makeText(RepairActivity.this, "Data berhasil disimpan", Toast.LENGTH_SHORT).show();
 
-                        tKalender.setText("");
-                        pic.setSelection(0);
-                        assetTag.setSelection(0);
-                        jKerusakan.setText("");
-                        tindakan.setText("");
-                        keterangan.setText("");
-//                        ttd.clear();
+                            tKalender.setText("");
+                            pic.setSelection(0);
+                            assetTag.setSelection(0);
+                            jKerusakan.setText("");
+                            tindakan.setText("");
+                            keterangan.setText("");
+                        }
 
-                    }
-                }).addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        Toast.makeText(RepairActivity.this, "Data gagal disimpan", Toast.LENGTH_SHORT).show();
-                    }
-                });
+                    }).addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            Toast.makeText(RepairActivity.this, "Data gagal disimpan", Toast.LENGTH_SHORT).show();
+                        }
+                    });
+                }
             }
         });
 
@@ -322,5 +346,10 @@ public class RepairActivity extends AppCompatActivity {
     public void backToDashboard() {
         Intent dashboard = new Intent(RepairActivity.this, HomeActivity.class);
         startActivity(dashboard);
+    }
+
+    public void backToReport() {
+        Intent report = new Intent(RepairActivity.this, ReportActivity.class);
+        startActivity(report);
     }
 }

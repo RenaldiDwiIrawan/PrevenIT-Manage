@@ -43,11 +43,11 @@
     <!-- Dropdown untuk Tahun -->
     <Spinner
         android:id="@+id/spinnerTahun"
-        android:layout_width="150dp"
+        android:layout_width="120dp"
         android:layout_height="50dp"
         android:prompt="@string/year_prompt"
         android:layout_marginTop="20dp"
-        android:layout_marginLeft="50dp"
+        android:layout_marginLeft="10dp"
         app:layout_constraintStart_toStartOf="@+id/txt_report"
         app:layout_constraintTop_toBottomOf="@id/txt_report"
         tools:ignore="MissingConstraints" />
@@ -55,24 +55,56 @@
     <!-- Dropdown untuk Bulan -->
     <Spinner
         android:id="@+id/spinnerBulan"
-        android:layout_width="150dp"
+        android:layout_width="120dp"
         android:layout_height="50dp"
         android:layout_marginTop="20dp"
-        android:layout_marginRight="50dp"
+        android:layout_marginLeft="10dp"
         android:prompt="@string/month_prompt"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/spinnerTahun"
         app:layout_constraintTop_toBottomOf="@id/txt_report"
         tools:ignore="MissingConstraints" />
 
+    <!-- Dropdown untuk maintenance/repair -->
+    <Spinner
+        android:id="@+id/spinnerMainpair"
+        android:layout_width="120dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="20dp"
+        app:layout_constraintStart_toStartOf="@+id/spinnerTahun"
+        app:layout_constraintTop_toBottomOf="@id/spinnerTahun"
+        tools:ignore="MissingConstraints"
+        android:entries="@array/mainpair"/>
+
+    <Button
+        android:id="@+id/btnFilterBulanTahun"
+        android:layout_width="120dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="20dp"
+        android:text="Filter Bulan dan Tahun"
+        android:textSize="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/spinnerBulan"
+        app:layout_constraintTop_toBottomOf="@+id/txt_report" />
+
+    <Button
+        android:id="@+id/btnFilterDataFrom"
+        android:layout_width="120dp"
+        android:layout_height="50dp"
+        android:layout_marginLeft="10dp"
+        android:text="Filter Data From"
+        android:textSize="10dp"
+        app:layout_constraintStart_toEndOf="@id/spinnerMainpair"
+        app:layout_constraintTop_toTopOf="@+id/spinnerMainpair" />
+
     <Button
         android:id="@+id/btnTampilkanData"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="100dp"
-        android:text="Tampilkan Data"
-        app:layout_constraintEnd_toEndOf="@+id/spinnerBulan"
-        app:layout_constraintStart_toStartOf="@+id/spinnerTahun"
-        app:layout_constraintTop_toBottomOf="@+id/txt_report" />
+        android:layout_width="120dp"
+        android:layout_height="50dp"
+        android:text="Tampilkan Semua Data"
+        android:textSize="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/btnFilterDataFrom"
+        app:layout_constraintTop_toTopOf="@+id/btnFilterDataFrom" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView_report"
