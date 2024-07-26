@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">PrevenIT</string>
 
-    <string-array name="pic"> pic-spinner
+    <string-array name="pic">pic-spinner
         <item>Pilih PIC</item>
         <item>ADI</item>
         <item>ADU</item>
@@ -13,7 +13,7 @@
     <string name="year_prompt">Pilih Tahun</string>
     <string name="month_prompt">Pilih Bulan</string>
 
-    <string-array name="mainpair"> pilih
+    <string-array name="mainpair">pilih
         <item>REPAIR</item>
         <item>MAINTENANCE</item>
     </string-array>
