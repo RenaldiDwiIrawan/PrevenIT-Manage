@@ -44,6 +44,7 @@ public class HomeActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         String role = intent.getStringExtra("role");
+        String roleUser = intent.getStringExtra("roleUser");
 
         if ("user".equals(role)){
             inventory.setVisibility(View.GONE);
@@ -91,17 +92,21 @@ public class HomeActivity extends AppCompatActivity {
         logout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                showPopup();
+                showPopup(role, roleUser);
             }
         });
     }
+//
+//    Intent intent = getIntent();
+//    String role = intent.getStringExtra("role");
+//    String roleUser = intent.getStringExtra("roleUser");
 
     @Override
     public void onBackPressed(){
         showLogoutConfirmation();
     }
 
-    private void showPopup() {
+    private void showPopup(String role,  String roleUser) {
         PopupMenu popupMenu = new PopupMenu(this , logout);
         popupMenu.getMenuInflater().inflate(R.menu.popup_profile, popupMenu.getMenu());
 
@@ -111,7 +116,17 @@ public class HomeActivity extends AppCompatActivity {
                 if (item.getItemId() == R.id.menu_about) {
                     showCustomMessage("PrevenIT - since 2024 \ntanya@prevenit.id");
                     return true;
-                }else if (item.getItemId() == R.id.menu_logout){
+                }
+                else if (item.getItemId() == R.id.add_account) {
+                    if ("admin".equals(role)) {
+                        Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
+                        intent.putExtra("roleUser", roleUser);
+                        startActivity(intent);
+                    } else {
+                        Toast.makeText(HomeActivity.this, "Tambah Account hanya bisa dilakukan oleh admin", Toast.LENGTH_SHORT).show();
+                    }
+                }
+                else if (item.getItemId() == R.id.menu_logout) {
                     showLogoutConfirmation();
                     return  true;
                 }
@@ -131,7 +146,7 @@ public class HomeActivity extends AppCompatActivity {
             public void onClick(DialogInterface dialog, int which) {
                 FirebaseAuth.getInstance().signOut();
                 dialog.dismiss();
-                toLogin();
+                toRegis();
             }
         });
 
@@ -145,8 +160,8 @@ public class HomeActivity extends AppCompatActivity {
         dialog.show();
     }
 
-    private void toLogin() {
-        Intent intent = new Intent(this, LoginActivity.class);
+    private void toRegis() {
+        Intent intent = new Intent(this, RegisterActivity.class);
         startActivity(intent);
     }
 

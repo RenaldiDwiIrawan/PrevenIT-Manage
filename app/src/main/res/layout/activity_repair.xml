@@ -44,7 +44,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout"
         android:layout_width="match_parent"
-        android:layout_height="350dp"
+        android:layout_height="380dp"
         android:layout_marginLeft="35dp"
         android:layout_marginTop="20dp"
         android:layout_marginRight="20dp"
@@ -135,6 +135,36 @@
             app:layout_constraintStart_toEndOf="@+id/asset_tag_repair"
             app:layout_constraintTop_toTopOf="@+id/asset_tag_repair" />
 
+        <TextView
+            android:id="@+id/namaPerangkatRepair"
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
+            android:text="Nama Perangkat"
+            app:layout_constraintEnd_toEndOf="@+id/pic"
+            app:layout_constraintStart_toStartOf="@+id/asset_tag_repair"
+            app:layout_constraintTop_toBottomOf="@+id/asset_tag_repair"
+            tools:ignore="MissingConstraints" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=" : "
+            app:layout_constraintTop_toTopOf="@+id/namaPerangkatRepair"
+            app:layout_constraintLeft_toRightOf="@+id/namaPerangkatRepair"
+            tools:ignore="MissingConstraints" />
+
+
+        <EditText
+            android:id="@+id/eNamaPerangkat"
+            android:layout_width="220dp"
+            android:layout_height="wrap_content"
+            android:hint="Nama Perangkat"
+            android:textSize="16dp"
+            android:layout_marginLeft="10dp"
+            app:layout_constraintBottom_toBottomOf="@+id/namaPerangkatRepair"
+            app:layout_constraintStart_toEndOf="@+id/namaPerangkatRepair"
+            app:layout_constraintTop_toTopOf="@+id/namaPerangkatRepair" />
 
         <TextView
             android:id="@+id/Jkerusakan"
@@ -143,8 +173,8 @@
             android:layout_marginTop="40dp"
             android:text="Jenis Kerusakan"
             app:layout_constraintEnd_toEndOf="@+id/pic"
-            app:layout_constraintStart_toStartOf="@+id/asset_tag_repair"
-            app:layout_constraintTop_toBottomOf="@+id/asset_tag_repair"
+            app:layout_constraintStart_toStartOf="@+id/namaPerangkatRepair"
+            app:layout_constraintTop_toBottomOf="@+id/namaPerangkatRepair"
             tools:ignore="MissingConstraints" />
 
         <TextView
@@ -286,8 +316,8 @@
         android:layout_height="50dp"
         android:layout_marginTop="20dp"
         android:backgroundTint="@color/base"
-        app:layout_constraintEnd_toStartOf="@+id/cardDashboard_repair"
         app:layout_constraintStart_toStartOf="@+id/constraintLayout"
+        app:layout_constraintEnd_toStartOf="@+id/cardDashboard_repair"
         app:layout_constraintTop_toBottomOf="@+id/constraintLayout">
 
         <TextView
@@ -302,8 +332,28 @@
     </androidx.cardview.widget.CardView>
 
     <androidx.cardview.widget.CardView
+        android:id="@+id/cardBackToReportRepair"
+        android:layout_width="150dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="20dp"
+        android:backgroundTint="@color/base"
+        app:layout_constraintStart_toStartOf="@+id/cardDashboard_repair"
+        app:layout_constraintTop_toBottomOf="@+id/cardDashboard_repair">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="Back To Report"
+            android:textColor="@color/white"
+            android:textSize="18dp"
+            android:layout_margin="10dp"
+            android:gravity="center"
+            />
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
         android:id="@+id/cardDashboard_repair"
-        android:layout_width="wrap_content"
+        android:layout_width="150dp"
         android:layout_height="50dp"
         android:layout_marginTop="20dp"
         android:backgroundTint="@color/base"

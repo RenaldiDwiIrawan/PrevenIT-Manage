@@ -19,9 +19,12 @@ import com.example.preventiveimplement.helper.DataReportHolder;
 import com.example.preventiveimplement.models.DataModel;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
 
 import java.text.DateFormatSymbols;
 import java.util.ArrayList;
@@ -33,8 +36,8 @@ public class ReportActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
     private DatabaseReference db;
     private FirebaseRecyclerAdapter<DataModel, DataReportHolder> adapter;
-    private Button tampilkanData;
-    private Spinner sTahun, sBulan;
+    private Button filterBulanTahun, filterDataFrom, tampilkanSemuaData;
+    private Spinner sTahun, sBulan, mainpair;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,9 +53,12 @@ public class ReportActivity extends AppCompatActivity {
             }
         });
 
+        mainpair = findViewById(R.id.spinnerMainpair);
         sTahun = findViewById(R.id.spinnerTahun);
         sBulan = findViewById(R.id.spinnerBulan);
-        tampilkanData = findViewById(R.id.btnTampilkanData);
+        filterBulanTahun = findViewById(R.id.btnFilterBulanTahun);
+        filterDataFrom = findViewById(R.id.btnFilterDataFrom);
+        tampilkanSemuaData = findViewById(R.id.btnTampilkanData);
         recyclerView = findViewById(R.id.recyclerView_report);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
@@ -74,10 +80,12 @@ public class ReportActivity extends AppCompatActivity {
                         if (item.getDataFrom().equals("REPAIR")){
                             Intent intent = new Intent(ReportActivity.this, RepairActivity.class);
                             intent.putExtra("dataPrevenIT", item);
+                            intent.putExtra("REPAIR", item.getDataFrom());
                             startActivity(intent);
                         } else if (item.getDataFrom().equals("MAINTENANCE")){
                             Intent intent = new Intent(ReportActivity.this, MaintenanceActivity.class);
                             intent.putExtra("dataPreventITMaintenance", item);
+                            intent.putExtra("MAINTENANCE", item.getDataFrom());
                             startActivity(intent);
                         }
                     }
@@ -94,11 +102,30 @@ public class ReportActivity extends AppCompatActivity {
         spinnerTahun();
         spinnerBulan();
 
-        tampilkanData.setOnClickListener(new View.OnClickListener() {
+        filterDataFrom.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String dataFrom = mainpair.getSelectedItem().toString();
+
+                Query query = db.orderByChild("dataFrom");
+
+                Query filterQuery = query.equalTo(dataFrom);
+                FirebaseRecyclerOptions<DataModel> filteredOptions =
+                        new FirebaseRecyclerOptions.Builder<DataModel>()
+                                .setQuery(filterQuery, DataModel.class)
+                                .build();
+
+                adapter.updateOptions(filteredOptions);
+                recyclerView.setAdapter(adapter);
+            }
+        });
+
+        filterBulanTahun.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 String selectedMonth = String.valueOf(sBulan.getSelectedItemPosition() + 1);
                 String selectedYear = sTahun.getSelectedItem().toString();
+                String dataFrom = mainpair.getSelectedItem().toString();
 
                 selectedMonth = String.format("%02d", Integer.parseInt(selectedMonth));
 
@@ -112,12 +139,26 @@ public class ReportActivity extends AppCompatActivity {
                         .startAt(startRange)
                         .endAt(endRange);
 
+
                 FirebaseRecyclerOptions<DataModel> filteredOptions =
                         new FirebaseRecyclerOptions.Builder<DataModel>()
                                 .setQuery(filteredQuery, DataModel.class)
                                 .build();
 
                 adapter.updateOptions(filteredOptions);
+                recyclerView.setAdapter(adapter);
+            }
+        });
+
+        tampilkanSemuaData.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                db = FirebaseDatabase.getInstance().getReference().child("dataPrevenIT");
+                FirebaseRecyclerOptions<DataModel> options =
+                        new FirebaseRecyclerOptions.Builder<DataModel>()
+                                .setQuery(db, DataModel.class)
+                                .build();
+                adapter.updateOptions(options);
                 recyclerView.setAdapter(adapter);
             }
         });

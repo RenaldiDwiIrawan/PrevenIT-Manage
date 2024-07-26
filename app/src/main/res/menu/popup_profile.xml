@@ -4,6 +4,9 @@
             android:id="@+id/menu_about"
             android:title="About" />
         <item
+                android:id="@+id/add_account"
+                android:title="Tambah Account"/>
+        <item
             android:id="@+id/menu_logout"
             android:title="Logout" />
 

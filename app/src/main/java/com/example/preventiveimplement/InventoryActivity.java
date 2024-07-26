@@ -128,11 +128,13 @@ public class InventoryActivity extends AppCompatActivity {
             }
         });
 
-
         Intent intent = getIntent();
         String role = intent.getStringExtra("role");
 
         if ("user".equals(role)){
+            tambah_data.setVisibility(View.GONE);
+            edit_data.setVisibility(View.GONE);
+        } else {
             tambah_data.setVisibility(View.GONE);
             edit_data.setVisibility(View.GONE);
         }
@@ -193,11 +195,9 @@ public class InventoryActivity extends AppCompatActivity {
             public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
 
                 String userStr = snapshot.child("user").getValue(String.class);
-//                String locationStr = snapshot.child("location").getValue(String.class);
                 String departementStr = snapshot.child("departement").getValue(String.class);
                 String asetStr = snapshot.child("aset").getValue(String.class);
                 String jumlahStr = snapshot.child("jumlah").getValue(String.class);
-//                String companyStr = snapshot.child("company").getValue(String.class);
                 String asset_tagStr = snapshot.child("asset_tag").getValue(String.class);
 
                 if (asset_tagStr != null && !asset_tagStr.isEmpty()) {
@@ -210,11 +210,14 @@ public class InventoryActivity extends AppCompatActivity {
 
                 if (snapshot.exists()) {
                     user.setText(userStr);
-//                    location.setText(locationStr);
                     departement.setText(departementStr);
                     aset.setText(asetStr);
                     jumlah.setText(jumlahStr);
-//                    company.setText(companyStr);
+
+                    aset.setEnabled(false);
+                    user.setEnabled(false);
+                    departement.setEnabled(false);
+                    jumlah.setEnabled(false);
                 }
             }
 
